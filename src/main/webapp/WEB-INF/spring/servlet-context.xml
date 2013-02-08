@@ -7,15 +7,34 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-3.0.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
-        
-	<!-- INITIATING SPRING TO LOOK FOR BEANS IN DIR AND REGISTERING ANNOTATIONS-->
-	<context:component-scan base-package="org.twi.imageshare.controller" />
-	
+
+	<!-- Activate annotation configured components -->
+	<context:annotation-config />
+
+	<!-- INITIATING SPRING TO LOOK FOR BEANS IN DIR AND REGISTERING ANNOTATIONS -->
+	<context:component-scan base-package="org.twi.imageshare.web.controller" />
+
 	<!-- VIEW RESOLVER TO BIND JSP VIEWS WITH THEIR NAMES -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+
+	<!-- Define the MongoTemplate which handles connectivity with MongoDB -->
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg name="mongo" ref="mongo" />
+		<constructor-arg name="databaseName" value="imageshare" />
+	</bean>
+
+	<!-- Factory bean that creates the Mongo instance -->
+	<bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
+		<property name="host" value="localhost" />
+	</bean>
+
+	<!-- Use this post processor to translate any MongoExceptions thrown in 
+		@Repository annotated classes -->
+	<bean
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
 </beans>
