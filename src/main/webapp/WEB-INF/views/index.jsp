@@ -1,8 +1,2 @@
-<html>
-<body>
-<h2>Hello World!</h2>
- 
-<h4>Message : ${message}</h1>
-
-</body>
-</html>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<tiles:insertDefinition name="indexPage" />

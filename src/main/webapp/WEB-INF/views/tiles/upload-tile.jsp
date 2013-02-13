@@ -1,0 +1,6 @@
+<div>upload</div>
+<div class="alert">
+	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	<strong>Warning!</strong> Best check yo self, you're not looking too
+	good.
+</div>
