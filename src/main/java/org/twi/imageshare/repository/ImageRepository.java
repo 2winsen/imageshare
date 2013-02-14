@@ -1,15 +1,8 @@
 package org.twi.imageshare.repository;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.twi.imageshare.domainobject.Image;
 
-public class ImageRepository {
+public interface ImageRepository extends MongoRepository<Image, String> {
 
-	@Autowired
-	public MongoTemplate mongoTemplate;
-	
-	public void insertImage(Image image) {
-	}
-	
 }

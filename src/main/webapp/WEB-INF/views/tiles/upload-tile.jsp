@@ -1,6 +1,11 @@
-<div>upload</div>
-<div class="alert">
-	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	<strong>Warning!</strong> Best check yo self, you're not looking too
-	good.
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span4 offset4">
+			<form action="" method="post" enctype="multipart/form-data" class="cleanform">
+				<input type="file" value="browse" name="file" />
+				<button class="btn btn-large btn-primary" type="submit">SHARE</button>
+			</form>
+		</div>
+	</div>
 </div>

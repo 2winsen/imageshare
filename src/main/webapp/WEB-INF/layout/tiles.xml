@@ -14,5 +14,13 @@
   <definition name="imagePage" extends="indexPage">
     <put-attribute name="body" value="/WEB-INF/views/tiles/image-tile.jsp" />
   </definition>
-
+  
+  <definition name="resourceNotFoundPage" extends="indexPage">
+    <put-attribute name="body" value="/WEB-INF/views/tiles/resourceNotFound-tile.jsp" />
+  </definition>
+  
+  <definition name="uncaughtExceptionPage" extends="indexPage">
+    <put-attribute name="body" value="/WEB-INF/views/tiles/uncaughtException-tile.jsp" />
+  </definition>
+  
 </tiles-definitions>
