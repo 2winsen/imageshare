@@ -10,7 +10,7 @@ public class Image {
 	private String id;
 	private String comment;
 	private long timestamp;
-	private String url;
+	private byte[] bytes;
 
 	public String getComment() {
 		return comment;
@@ -36,12 +36,12 @@ public class Image {
 		this.timestamp = timestamp;
 	}
 
-	public String getUrl() {
-		return url;
+	public byte[] getBytes() {
+		return bytes;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setBytes(byte[] bytes) {
+		this.bytes = bytes;
 	}
 
 }

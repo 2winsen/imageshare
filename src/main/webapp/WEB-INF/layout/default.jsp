@@ -6,8 +6,13 @@
 	<head>
 		<title><spring:message code="app.name"/></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- CSS -->
 		<link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet" media="screen">
 		<link href="<c:url value="/resources/custom/css/custom.css" />" rel="stylesheet">
+		<!-- JS -->		
+		<script src="<c:url value="/resources/jquery/jquery-1.9.1.min.js" />"></script>
+		<script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js" />"></script>
+		<script src="<c:url value="/resources/custom/js/custom.js" />"></script>
 	</head>
 	
   	<body>
@@ -16,8 +21,6 @@
     		<tiles:insertAttribute name="body" /> 
 	    	<tiles:insertAttribute name="footer" />
 	    </div>
-		<script src="<c:url value="/resources/jquery/jquery-1.9.1.min.js" />"></script>
-		<script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js" />"></script>
-		<script src="<c:url value="/resources/custom/js/custom.js" />"></script>
+
 	</body>
 </html>
