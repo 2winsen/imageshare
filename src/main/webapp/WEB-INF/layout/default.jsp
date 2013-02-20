@@ -13,6 +13,7 @@
 		<script src="<c:url value="/resources/jquery/jquery-1.9.1.min.js" />"></script>
 		<script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js" />"></script>
 		<script src="<c:url value="/resources/custom/js/custom.js" />"></script>
+		<script src="<c:url value="/resources/jquery/jquery.form.js" />"></script>
 	</head>
 	
   	<body>
