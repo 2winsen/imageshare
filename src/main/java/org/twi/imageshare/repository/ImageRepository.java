@@ -5,6 +5,11 @@ import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.twi.imageshare.domainobject.Image;
 
+/**
+ * Spring data for MongoDB
+ * @author vitalik
+ *
+ */
 public interface ImageRepository extends MongoRepository<Image, String> {
 
 	/**
