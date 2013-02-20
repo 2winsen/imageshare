@@ -15,7 +15,7 @@ import org.twi.imageshare.domainobject.Image;
 import org.twi.imageshare.service.ImageService;
 
 /**
- * MVC Controller for uploading Images 
+ * MVC Controller for uploading Images (default page)
  * @author vitalijs.sakels
  *
  */
@@ -26,11 +26,23 @@ public class UploadController {
 	@Resource(name = ImageService.IMAGE_SERVICE_BEAN)
 	private ImageService imageService; 
 	
+	/**
+	 * Rendering index page
+	 * @param model
+	 * @return
+	 */	
 	@RequestMapping(method = RequestMethod.GET)
 	public String initView() {
 		return "index";
 	}
 	
+	/**
+	 * AJAX Called once user is submitting upload form
+	 * @param model
+	 * @param file - Uploaded file
+	 * @param comment - Comment for uploaded file
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody String uploadAction(HttpServletRequest paramHttpServletRequest,
 			@RequestParam MultipartFile file, 
@@ -46,6 +58,13 @@ public class UploadController {
 		return paramHttpServletRequest.getRequestURL() + image.getId();
 	}
 	
+	/**
+	 * Making Image object for persistence
+	 * @param multipartFile
+	 * @param comment
+	 * @return
+	 * @throws IOException
+	 */
 	private Image prepareImage(MultipartFile multipartFile, String comment) throws IOException {
 		Image image = new Image();
 		image.setBytes(multipartFile.getBytes());
