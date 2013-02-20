@@ -3,6 +3,11 @@ package org.twi.imageshare.domainobject;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * This pojo is persisted to mongoDB as document
+ * @author vitalik
+ *
+ */
 @Document
 public class Image {
 
