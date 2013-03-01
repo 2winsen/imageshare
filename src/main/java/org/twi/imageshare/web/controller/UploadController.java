@@ -32,7 +32,7 @@ public class UploadController {
 	 * @return
 	 */	
 	@RequestMapping(method = RequestMethod.GET)
-	public String initView() {
+	public String indexView() {
 		return "index";
 	}
 	
