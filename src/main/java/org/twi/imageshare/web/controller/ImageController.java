@@ -39,7 +39,7 @@ public class ImageController {
 		Image image = imageService.getImage(imageId);
 		response.setContentType("image/jpg");
 		ServletOutputStream out = response.getOutputStream();
-		out.write(image.getBytes());
+//		out.write(image.getBytes());
 		out.flush();
 	}
 	

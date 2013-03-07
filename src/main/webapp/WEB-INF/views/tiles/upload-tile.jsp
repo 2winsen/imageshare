@@ -1,13 +1,13 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="span4 offset4">
-			<form id="uploadForm" action="" method="post"
-				enctype="multipart/form-data" class="cleanform">
-				<input type="file" value="browse" name="file" /> 
-				<input id="comment" type="hidden" name="comment" />
-				<button id="share1" class="btn btn-large btn-primary" type="button">Share...</button>
-			</form>
+			<form:form id="uploadForm" method="post" modelAttribute="image">
+				<form:input type="file" value="browse" path="file" /> 
+				<form:input id="comment" type="hidden" path="comment" />
+				<input id="share1" class="btn btn-large btn-primary" type="button" value="Share..." />
+			</form:form>
 		</div>
 	</div>
 </div>
@@ -41,13 +41,14 @@
 		$('#share2').click(function() {
 			// Copies comment value from popup
 			$('#comment').val($('#commentTemp').val());
+			$('#commentTemp').val(null);
 			$('#uploadForm').submit();
 		});
 
 		$("#uploadForm").ajaxForm({
 			clearForm : true,
-			success : function(html) {
-				$('#result').text(html);
+			success : function(response) {
+//				$('#result').text(html);
 			}
 		});
 	});

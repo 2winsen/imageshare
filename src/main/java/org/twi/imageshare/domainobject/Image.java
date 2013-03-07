@@ -1,7 +1,10 @@
 package org.twi.imageshare.domainobject;
 
+import javax.validation.constraints.Size;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * This pojo is persisted to mongoDB as document
@@ -11,11 +14,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class Image {
 
+	private static final int MAX_COMMENT_LENGTH = 200;
+	
 	@Id
 	private String id;
+	
+	@Size(max = MAX_COMMENT_LENGTH)
 	private String comment;
 	private long timestamp;
-	private byte[] bytes;
+	private MultipartFile file;
 
 	public String getComment() {
 		return comment;
@@ -41,12 +48,12 @@ public class Image {
 		this.timestamp = timestamp;
 	}
 
-	public byte[] getBytes() {
-		return bytes;
+	public MultipartFile getFile() {
+		return file;
 	}
 
-	public void setBytes(byte[] bytes) {
-		this.bytes = bytes;
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 
 }
