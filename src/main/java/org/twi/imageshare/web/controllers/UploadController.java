@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.twi.imageshare.entities.Image;
 import org.twi.imageshare.services.ImageService;
+import org.twi.imageshare.web.controllers.params.JsonResponse;
 import org.twi.imageshare.web.validators.ImageValidator;
 
 /**
@@ -50,23 +51,21 @@ public class UploadController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody AjaxResponse uploadAction(@Valid @ModelAttribute(value="image") Image image,
-			BindingResult result,
+	public @ResponseBody
+	JsonResponse uploadAction(@Valid @ModelAttribute(value = "image") Image image, BindingResult result,
 			HttpServletRequest paramHttpServletRequest) {
-			prepareImage(image);
-		AjaxResponse response = new AjaxResponse();
+		prepareImage(image);
+		JsonResponse response = new JsonResponse();
 		ImageValidator imageValidator = new ImageValidator();
 		imageValidator.validate(image, result);
 		if (!result.hasErrors()) {
 			try {
 				image = imageService.saveImage(image);
-				response.setStatus("SUCCESS");
 				response.setResponse(paramHttpServletRequest.getRequestURL() + image.getId());
 			} catch (Exception e) {
-				
+
 			}
 		} else {
-			response.setStatus("ERROR");
 			response.setErrors(result);
 		}
 		return response;
@@ -76,30 +75,4 @@ public class UploadController {
 		image.setTimestamp(System.currentTimeMillis());
 	}
 
-}
-
-class AjaxResponse {
-	private String status;
-	private Object response;
-	private Object errors;
-	
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	public Object getResponse() {
-		return response;
-	}
-	public void setResponse(Object response) {
-		this.response = response;
-	}
-	public Object getErrors() {
-		return errors;
-	}
-	public void setErrors(Object errors) {
-		this.errors = errors;
-	}
-	
 }
