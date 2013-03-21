@@ -1,4 +1,4 @@
-package org.twi.imageshare.web.controller;
+package org.twi.imageshare.web.controllers;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.twi.imageshare.domainobject.Image;
-import org.twi.imageshare.service.ImageService;
-import org.twi.imageshare.web.validator.ImageValidator;
+import org.twi.imageshare.entities.Image;
+import org.twi.imageshare.services.ImageService;
+import org.twi.imageshare.web.validators.ImageValidator;
 
 /**
  * MVC Controller for uploading Images (default page)

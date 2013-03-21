@@ -1,4 +1,4 @@
-package org.twi.imageshare.web.controller;
+package org.twi.imageshare.web.controllers;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
@@ -10,8 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.twi.imageshare.domainobject.Image;
-import org.twi.imageshare.service.ImageService;
+import org.twi.imageshare.entities.Image;
+import org.twi.imageshare.services.ImageService;
 
 /**
  * RESTful controller to access images by URI

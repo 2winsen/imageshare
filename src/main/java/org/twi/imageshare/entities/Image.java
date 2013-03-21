@@ -1,4 +1,4 @@
-package org.twi.imageshare.domainobject;
+package org.twi.imageshare.entities;
 
 import javax.validation.constraints.Size;
 

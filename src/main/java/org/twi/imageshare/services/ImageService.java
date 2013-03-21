@@ -1,13 +1,13 @@
-package org.twi.imageshare.service;
+package org.twi.imageshare.services;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.twi.imageshare.domainobject.Image;
-import org.twi.imageshare.repository.ImageRepository;
+import org.twi.imageshare.entities.Image;
+import org.twi.imageshare.repositories.ImageRepository;
 
-@Service(ImageService.IMAGE_SERVICE_BEAN)
+@Service(value=ImageService.IMAGE_SERVICE_BEAN)
 public class ImageService {
 	
 	public static final String IMAGE_SERVICE_BEAN = "imageService";

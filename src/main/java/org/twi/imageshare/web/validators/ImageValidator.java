@@ -1,8 +1,8 @@
-package org.twi.imageshare.web.validator;
+package org.twi.imageshare.web.validators;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import org.twi.imageshare.domainobject.Image;
+import org.twi.imageshare.entities.Image;
 import org.twi.imageshare.utils.ImageMIMETypes;
 
 public class ImageValidator implements Validator {

@@ -5,6 +5,6 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		
 	<!-- INITIATING SPRING TO LOOK FOR BEANS IN DIR AND REGISTERING ANNOTATIONS -->
-	<context:component-scan base-package="org.twi.imageshare.web.controller, org.twi.imageshare.service" />
+	<context:component-scan base-package="org.twi.imageshare" />
 			
-</beans>		
+</beans>

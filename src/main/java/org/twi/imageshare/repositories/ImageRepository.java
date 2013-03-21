@@ -1,9 +1,9 @@
-package org.twi.imageshare.repository;
+package org.twi.imageshare.repositories;
 
 import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.twi.imageshare.domainobject.Image;
+import org.twi.imageshare.entities.Image;
 
 /**
  * Spring data for MongoDB

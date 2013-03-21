@@ -17,14 +17,13 @@
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 
-	<!-- Model -->
-	<import resource="model-context.xml" />
-	
 	<!-- View -->
 	<import resource="view-context.xml" />
 	
 	<!-- Controller -->
 	<import resource="controller-context.xml" />
-
+	
+	<!-- Model -->
+	<import resource="model-context.xml" />
 
 </beans>
