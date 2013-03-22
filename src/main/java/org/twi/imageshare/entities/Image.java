@@ -3,26 +3,35 @@ package org.twi.imageshare.entities;
 import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
  * This pojo is persisted to mongoDB as document
+ * 
  * @author vitalik
- *
+ * 
  */
 @Document
 public class Image {
 
 	private static final int MAX_COMMENT_LENGTH = 200;
-	
+
 	@Id
 	private String id;
-	
+
 	@Size(max = MAX_COMMENT_LENGTH)
 	private String comment;
-	private long timestamp;
+
+	private Long timestamp;
+
+	@Transient
 	private MultipartFile file;
+
+	private byte[] bytes;
+
+	private String contentType;
 
 	public String getComment() {
 		return comment;
@@ -40,11 +49,11 @@ public class Image {
 		this.id = id;
 	}
 
-	public long getTimestamp() {
+	public Long getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(long timestamp) {
+	public void setTimestamp(Long timestamp) {
 		this.timestamp = timestamp;
 	}
 
@@ -54,6 +63,22 @@ public class Image {
 
 	public void setFile(MultipartFile file) {
 		this.file = file;
+	}
+
+	public byte[] getBytes() {
+		return bytes;
+	}
+
+	public void setBytes(byte[] bytes) {
+		this.bytes = bytes;
+	}
+
+	public String getContentType() {
+		return contentType;
+	}
+
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
 	}
 
 }

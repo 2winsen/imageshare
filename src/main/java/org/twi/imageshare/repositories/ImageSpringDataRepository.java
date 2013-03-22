@@ -10,7 +10,7 @@ import org.twi.imageshare.entities.Image;
  * @author vitalik
  *
  */
-public interface ImageRepository extends MongoRepository<Image, String> {
+public interface ImageSpringDataRepository extends MongoRepository<Image, String> {
 
 	/**
 	 * Get image document by ID (using spring data)

@@ -16,19 +16,20 @@
 </head>
 
 <body>
-    <div id="wrap">
+	<div id="wrap">
 
-      <!-- Begin page content -->
-      <div class="container">
+		<!-- Begin page content -->
+		<div class="container">
 			<div class="page-header">
 				<tiles:insertAttribute name="header" />
 			</div>
-			<div>				
+			<div>
+				<div id="errorsContainer"></div>
 				<tiles:insertAttribute name="body" />
 			</div>
 		</div>
-      <div id="push"></div>
-    </div>
+		<div id="push"></div>
+	</div>
 
 	<div id="footer">
 		<div class="container">

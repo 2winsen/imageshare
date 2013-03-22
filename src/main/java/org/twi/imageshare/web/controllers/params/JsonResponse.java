@@ -1,9 +1,12 @@
 package org.twi.imageshare.web.controllers.params;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class JsonResponse {
 
 	private Object response;
-	private Object errors;
+	private List<String> errors;
 
 	public Object getResponse() {
 		return response;
@@ -13,12 +16,19 @@ public class JsonResponse {
 		this.response = response;
 	}
 
-	public Object getErrors() {
+	public List<String> getErrors() {
 		return errors;
 	}
 
-	public void setErrors(Object errors) {
+	public void setErrors(List<String> errors) {
 		this.errors = errors;
+	}
+	
+	public void appendError(String error) {
+		if (errors == null) {
+			errors = new ArrayList<String>();
+		}
+		errors.add(error);
 	}
 
 }

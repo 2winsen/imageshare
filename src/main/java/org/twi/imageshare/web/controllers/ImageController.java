@@ -26,21 +26,21 @@ public class ImageController {
 	@Resource(name = ImageService.IMAGE_SERVICE_BEAN)
 	private ImageService imageService;
 
-	
 	@RequestMapping(value = "/{imageId}", method = RequestMethod.GET)
 	public String imagePage(@PathVariable String imageId, Model model) {
 		Image image = imageService.getImage(imageId);
 		model.addAttribute("image", image);
 		return "image";
 	}
-	
+
 	@RequestMapping(value = "/image_src/{imageId}", method = RequestMethod.GET)
-	public void imageSrc(@PathVariable String imageId, HttpServletRequest request, HttpServletResponse response) throws Exception {		
+	public void imageSrc(@PathVariable String imageId, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
 		Image image = imageService.getImage(imageId);
-		response.setContentType("image/jpg");
+		response.setContentType(image.getContentType());
 		ServletOutputStream out = response.getOutputStream();
-//		out.write(image.getBytes());
+		out.write(image.getBytes());
 		out.flush();
 	}
-	
+
 }

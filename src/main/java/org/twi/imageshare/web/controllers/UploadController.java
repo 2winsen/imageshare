@@ -1,11 +1,18 @@
 package org.twi.imageshare.web.controllers;
 
+import java.util.Locale;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,6 +33,11 @@ import org.twi.imageshare.web.validators.ImageValidator;
 @RequestMapping("/")
 public class UploadController {
 
+	public static final Logger log = LoggerFactory.getLogger(UploadController.class);
+
+	@Autowired
+	private ApplicationContext context;
+
 	@Resource(name = ImageService.IMAGE_SERVICE_BEAN)
 	private ImageService imageService;
 
@@ -37,6 +49,7 @@ public class UploadController {
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView indexView() {
+		imageService.removeOldImagesIfNecessary();
 		return new ModelAndView("index", "image", new Image());
 	}
 
@@ -56,17 +69,20 @@ public class UploadController {
 			HttpServletRequest paramHttpServletRequest) {
 		prepareImage(image);
 		JsonResponse response = new JsonResponse();
-		ImageValidator imageValidator = new ImageValidator();
-		imageValidator.validate(image, result);
+		(new ImageValidator()).validate(image, result);
 		if (!result.hasErrors()) {
 			try {
+				image.setBytes(image.getFile().getBytes());
+				image.setContentType(image.getFile().getContentType());
 				image = imageService.saveImage(image);
 				response.setResponse(paramHttpServletRequest.getRequestURL() + image.getId());
 			} catch (Exception e) {
-
+				log.error(e.getMessage());
 			}
 		} else {
-			response.setErrors(result);
+			for (ObjectError error : result.getAllErrors()) {
+				response.appendError(context.getMessage(error.getCode(), null, Locale.getDefault()));
+			}
 		}
 		return response;
 	}

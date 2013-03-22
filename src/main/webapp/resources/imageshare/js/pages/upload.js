@@ -1,6 +1,10 @@
 $(document).ready(function() {
 	$('#share1').click(function() {
 		$('#commentModal').modal('show');
+		var fileName = $("#imageFile").val();
+		if (fileName) {
+			$("#share2").show();
+		}
 	});
 
 	$('#share2').click(function() {
@@ -13,9 +17,22 @@ $(document).ready(function() {
 	$("#uploadForm").ajaxForm({
 		clearForm : true,
 		success : function(response) {
-			var a = 10;
-			var b = 10;
-			var c = a + b;
+			if (response != null) {
+				if (response.errors != null) {
+					for ( var i = 0; i < response.errors.length; i++) {
+						showAlert(response.errors[i]);
+					}
+				} else {
+					window.location = response.response;
+				}
+			}
 		}
 	});
 });
+
+function showAlert(text) {
+	var alertHtml = "<div class='alert alert-error'>"
+			+ "<button type='button' class='close' data-dismiss='alert'>&times;</button><strong>Warning!</strong>&nbsp;<span>"
+			+ text + "</span>" + "</div>";
+	$("#errorsContainer").append(alertHtml);
+}
