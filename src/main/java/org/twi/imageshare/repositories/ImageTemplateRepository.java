@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 import org.twi.imageshare.entities.Image;
 
+import com.mongodb.CommandResult;
 import com.mongodb.DB;
 
 @Repository
@@ -29,9 +30,13 @@ public class ImageTemplateRepository {
 			mongoTemplate.findAndRemove(new Query().limit(MAX_DELETE_LIMIT), Image.class);
 		}
 	}
+	
+	public CommandResult getDBStats() {
+		return db.getStats(); 
+	}
 
 	private boolean isMaxAllowedSpaceInUse() {
-		int size = (Integer) db.getStats().get("dataSize");
+		int size = (Integer) getDBStats().get("dataSize");
 		return size >= MAX_ALLOWED_DB_SIZE;
 	}
 

@@ -1,6 +1,7 @@
 package org.twi.imageshare.services;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,11 @@ public class ImageService {
 
 	public void removeOldImagesIfNecessary() {
 		templateRepository.removeOldImagesIfNecessary();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Map<String, String> getDBStats() {
+		return templateRepository.getDBStats().toMap();
 	}
 
 }

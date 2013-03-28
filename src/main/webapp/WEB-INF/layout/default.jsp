@@ -23,7 +23,7 @@
 			<div class="page-header">
 				<tiles:insertAttribute name="header" />
 			</div>
-			<div>
+			<div style="text-align: center;">
 				<div id="errorsContainer"></div>
 				<tiles:insertAttribute name="body" />
 			</div>

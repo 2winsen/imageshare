@@ -1,3 +1,4 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -8,7 +9,8 @@
 				<form:errors path="file" cssClass="error" element="div" />
 				<form:input id="imageFile" type="file" value="browse" path="file" />
 				<form:input id="comment" type="hidden" path="comment" />
-				<input id="share1" class="btn btn-large btn-primary" type="button" value="Share..." />
+				<input id="share1" class="btn btn-large btn-primary" type="button"
+					value="<spring:message code="app.upload.continue" />" />
 			</form:form>
 		</div>
 	</div>
@@ -20,13 +22,17 @@
 	aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&#x2715;</button>
-		<h3 id="myModalLabel">Add comment (optional)</h3>
+		<h3 id="myModalLabel">
+			<spring:message code="app.upload.comment" />
+		</h3>
 	</div>
 	<div class="modal-body">
-		<input id="commentTemp" type="text" style="width: 200px; height: 200px;" />
+		<textarea rows="2" cols="50" style="margin: 0px 0px 10px; height: 112px; width: 516px;"></textarea>
 	</div>
 	<div class="modal-footer">
-		<button id="share2" class="btn btn-primary" data-dismiss="modal" aria-hidden="true" style="display: none">Share!</button>
+		<button id="share2" class="btn btn-primary" data-dismiss="modal" aria-hidden="true" style="display: none">
+			<spring:message code="app.upload.share" />
+		</button>
 	</div>
 </div>
 <script src="<c:url value="/resources/imageshare/js/pages/upload.js"/>" type="text/javascript" charset="utf-8"></script>

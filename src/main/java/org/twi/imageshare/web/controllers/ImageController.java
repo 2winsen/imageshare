@@ -28,8 +28,7 @@ public class ImageController {
 
 	@RequestMapping(value = "/{imageId}", method = RequestMethod.GET)
 	public String imagePage(@PathVariable String imageId, Model model) {
-		Image image = imageService.getImage(imageId);
-		model.addAttribute("image", image);
+		model.addAttribute("imageId", imageId);
 		return "image";
 	}
 
