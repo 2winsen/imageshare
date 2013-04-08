@@ -12,11 +12,4 @@ import org.twi.imageshare.entities.Image;
  */
 public interface ImageSpringDataRepository extends MongoRepository<Image, String> {
 
-	/**
-	 * Get image document by ID (using spring data)
-	 * @param id
-	 * @return
-	 */
-	List<Image> findById(String id);
-
 }

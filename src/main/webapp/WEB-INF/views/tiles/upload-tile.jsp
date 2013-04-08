@@ -4,10 +4,10 @@
 
 <div class="fileupload fileupload-new" data-provides="fileupload">
 	<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-		<img src="<c:url value="/resources/imageshare/img/no_image.gif"/>" />
+		<img src="<c:url value="/resources/imageshare/img/no_preview.png"/>" />
 	</div>
 	<div class="fileupload-preview fileupload-exists thumbnail"
-		style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+		style="max-width: 300px; max-height: 300px; line-height: 20px;"></div>
 	<div>
 		<form:form id="uploadForm" method="post" modelAttribute="image">			 
 			<form:input id="comment" type="hidden" path="comment" />

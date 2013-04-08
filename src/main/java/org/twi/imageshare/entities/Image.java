@@ -17,6 +17,12 @@ import org.springframework.web.multipart.MultipartFile;
 public class Image {
 
 	private static final int MAX_COMMENT_LENGTH = 200;
+	
+	public static final String FIELD_NAME_TIMESTAMP = "timestamp";
+	public static final String FIELD_NAME_COMMENT = "comment";
+	public static final String FIELD_NAME_CONTENT_TYPE = "contentType";
+	public static final String FIELD_NAME_BYTES = "bytes";
+	public static final String FIELD_NAME_ID = "id";
 
 	@Id
 	private String id;

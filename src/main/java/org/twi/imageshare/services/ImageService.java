@@ -25,13 +25,12 @@ public class ImageService {
 		return image;
 	}
 
-	public Image getImage(String id) {
-		List<Image> tempResults = springDataRepository.findById(id);
-		Image result = null;
-		if (tempResults.size() > 0) {
-			result = tempResults.get(0);
-		}
-		return result;
+	public Image getImageBytesAndContentTypeById(String id) {
+		return templateRepository.getImageBytesAndContentTypeById(id);
+	}
+
+	public Image getImageMetadatabyId(String id) {
+		return templateRepository.getImageMetadatabyId(id);
 	}
 
 	public List<Image> getAllImages() {
@@ -41,7 +40,7 @@ public class ImageService {
 	public void removeOldImagesIfNecessary() {
 		templateRepository.removeOldImagesIfNecessary();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public Map<String, String> getDBStats() {
 		return templateRepository.getDBStats().toMap();
