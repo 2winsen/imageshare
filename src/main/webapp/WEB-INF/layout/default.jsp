@@ -4,11 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title><spring:message code="app.name.slogan" /></title>
+<title><spring:message code="app.name" />
+	<spring:message code="app.slogan" /></title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- CSS -->
 <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet" media="screen">
 <link href="<c:url value="/resources/imageshare/css/style.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/bootstrap-fileupload/bootstrap-fileupload.min.css" />" rel="stylesheet">
 <!-- JS -->
 <script src="<c:url value="/resources/jquery/jquery-1.9.1.min.js"/>" type="text/javascript" charset="utf-8"></script>
 <script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>" type="text/javascript" charset="utf-8"></script>
@@ -33,7 +35,9 @@
 
 	<div id="footer">
 		<div class="container">
-			<tiles:insertAttribute name="footer" />
+			<div class="muted credit">
+				<tiles:insertAttribute name="footer" />
+			</div>
 		</div>
 	</div>
 

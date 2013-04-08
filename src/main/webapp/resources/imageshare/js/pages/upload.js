@@ -1,10 +1,14 @@
 $(document).ready(function() {
-	$('#share1').click(function() {
-		$('#commentModal').modal('show');
+	$("#imageFile").change(function(){
 		var fileName = $("#imageFile").val();
 		if (fileName) {
-			$("#share2").show();
+			$("#share1").removeAttr('disabled');
 		}
+	});
+	
+	$('#share1').click(function() {
+		$('#commentModal').modal('show');
+		$('#commentTemp').val(null);
 	});
 
 	$('#share2').click(function() {

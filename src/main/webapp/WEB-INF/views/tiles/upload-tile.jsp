@@ -2,37 +2,44 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<div class="container-fluid">
-	<div class="row-fluid">
-		<div class="span4 offset4">
-			<form:form id="uploadForm" method="post" modelAttribute="image">
-				<form:errors path="file" cssClass="error" element="div" />
+<div class="fileupload fileupload-new" data-provides="fileupload">
+	<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+		<img src="<c:url value="/resources/imageshare/img/no_image.gif"/>" />
+	</div>
+	<div class="fileupload-preview fileupload-exists thumbnail"
+		style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+	<div>
+		<form:form id="uploadForm" method="post" modelAttribute="image">			 
+			<form:input id="comment" type="hidden" path="comment" />
+			<span class="btn btn-link btn-file">
+				<span class="fileupload-new"><spring:message code="app.upload.select.image" /></span>
+				<span class="fileupload-exists"><spring:message code="app.upload.change" /></span>
 				<form:input id="imageFile" type="file" value="browse" path="file" />
-				<form:input id="comment" type="hidden" path="comment" />
-				<input id="share1" class="btn btn-large btn-primary" type="button"
-					value="<spring:message code="app.upload.continue" />" />
-			</form:form>
-		</div>
+			</span>				
+			<a href="#" class="btn btn-link fileupload-exists" data-dismiss="fileupload"><spring:message code="app.upload.remove" /></a>			
+		</form:form>
+		<input id="share1" class="btn btn-large btn-primary" type="button" value="<spring:message code="app.upload.continue" />" disabled="disabled" />
 	</div>
 </div>
-<div id="result"></div>
 
 <!-- Modal -->
 <div id="commentModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="commentModal"
 	aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&#x2715;</button>
-		<h3 id="myModalLabel">
+		<h4 id="myModalLabel">
 			<spring:message code="app.upload.comment" />
-		</h3>
+		</h4>
 	</div>
 	<div class="modal-body">
-		<textarea rows="2" cols="50" style="margin: 0px 0px 10px; height: 112px; width: 516px;"></textarea>
+		<textarea id="commentTemp" rows="2" cols="50" maxlength="200" style="margin: 0px 0px 10px; height: 112px; width: 516px;"></textarea>
 	</div>
 	<div class="modal-footer">
-		<button id="share2" class="btn btn-primary" data-dismiss="modal" aria-hidden="true" style="display: none">
+		<button id="share2" class="btn btn-large btn-primary" data-dismiss="modal" aria-hidden="true">
 			<spring:message code="app.upload.share" />
 		</button>
 	</div>
 </div>
 <script src="<c:url value="/resources/imageshare/js/pages/upload.js"/>" type="text/javascript" charset="utf-8"></script>
+<script src="<c:url value="/resources/bootstrap-fileupload/bootstrap-fileupload.min.js"/>" type="text/javascript"
+	charset="utf-8"></script>
