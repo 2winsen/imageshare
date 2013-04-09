@@ -31,9 +31,13 @@ public class ImageController {
 	@RequestMapping(value = "/{imageId}", method = RequestMethod.GET)
 	public String imagePage(@PathVariable String imageId, Model model, HttpServletRequest paramHttpServletRequest) {
 		Image image = imageService.getImageMetadatabyId(imageId);
-		model.addAttribute("comment", image.getComment());
-		model.addAttribute("url", paramHttpServletRequest.getRequestURL());
-		model.addAttribute("date", new Date(image.getTimestamp()));
+		if (image != null) {
+			model.addAttribute("comment", image.getComment());
+			model.addAttribute("url", paramHttpServletRequest.getRequestURL());
+			model.addAttribute("date", new Date(image.getTimestamp()));
+		} else {
+			return "resourceNotFound";
+		}
 		return "image";
 	}
 

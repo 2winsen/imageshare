@@ -19,6 +19,10 @@
     <put-attribute name="body" value="/WEB-INF/views/tiles/status-tile.jsp" />
   </definition>
   
+  <definition name="termsPage" extends="indexPage">
+    <put-attribute name="body" value="/WEB-INF/views/tiles/terms-tile.jsp" />
+  </definition>
+  
   <definition name="resourceNotFoundPage" extends="indexPage">
     <put-attribute name="body" value="/WEB-INF/views/tiles/resourceNotFound-tile.jsp" />
   </definition>

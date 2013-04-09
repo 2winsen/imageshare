@@ -1,11 +1,13 @@
 $(document).ready(function() {
-	$("#imageFile").change(function(){
-		var fileName = $("#imageFile").val();
-		if (fileName) {
-			$("#share1").removeAttr('disabled');
-		}
-	});
+	$("#share1").prop('disabled', true);
 	
+	$("#imageFile").change(function() {
+		enableShareButton();
+	});
+	$('#termsCheckbox').change(function() {
+		enableShareButton();
+	});
+
 	$('#share1').click(function() {
 		$('#commentModal').modal('show');
 		$('#commentTemp').val(null);
@@ -36,7 +38,15 @@ $(document).ready(function() {
 
 function showAlert(text) {
 	var alertHtml = "<div class='alert alert-error'>"
-			+ "<button type='button' class='close' data-dismiss='alert'>&times;</button><strong>Warning!</strong>&nbsp;<span>"
+			+ "<strong>Warning!</strong>&nbsp;<span>"
 			+ text + "</span>" + "</div>";
 	$("#errorsContainer").append(alertHtml);
+}
+
+function enableShareButton() {
+	if ($("#imageFile").val() && $('#termsCheckbox').is(':checked')) {
+		$("#share1").prop('disabled', false);
+	} else {
+		$("#share1").prop('disabled', true);
+	}
 }

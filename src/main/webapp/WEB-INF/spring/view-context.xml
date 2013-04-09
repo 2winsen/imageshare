@@ -35,6 +35,7 @@
 		<property name="basenames">
 			<list>
 				<value>/WEB-INF/i18n/application</value>
+				<value>/WEB-INF/i18n/terms</value>
 				<value>/WEB-INF/i18n/error</value>
 			</list>			
 		</property>

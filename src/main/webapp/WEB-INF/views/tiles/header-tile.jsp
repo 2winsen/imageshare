@@ -5,7 +5,7 @@
 	<h1>
 		<a href="<c:url value="/" />"><spring:message code="app.name" /></a>
 	</h1>
-	<h3>
+	<h4>
 		<spring:message code="app.slogan" />
-	</h3>
+	</h4>
 </div>
