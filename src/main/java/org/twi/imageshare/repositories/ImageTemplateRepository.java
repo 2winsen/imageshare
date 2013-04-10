@@ -1,5 +1,8 @@
 package org.twi.imageshare.repositories;
 
+import java.util.List;
+
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -14,21 +17,42 @@ import com.mongodb.DB;
 public class ImageTemplateRepository {
 
 	public static final int MAX_ALLOWED_DB_SIZE = 94371840; // 90 MB in bytes
-	public static final int MAX_DELETE_LIMIT = 15;
+	public static final int MAX_DELETE_LIMIT = 25;
 
-	private MongoTemplate mongoTemplate;
+	public static final int DAYS_LIMIT = 2;
+
+	private MongoTemplate mongoImageTemplate;
 
 	private DB db;
 
 	@Autowired
 	public void setMongoTemplate(MongoTemplate mongoTemplate) {
-		this.mongoTemplate = mongoTemplate;
+		this.mongoImageTemplate = mongoTemplate;
 		db = mongoTemplate.getDb();
 	}
 
+	public void save(Image image) {
+		mongoImageTemplate.save(image);
+	}
+
 	public void removeOldImagesIfNecessary() {
+		removeOldImagesIfDatabaseIsFull();
+		removeOldImagesAfter2DaysPeriod();
+	}
+
+	public void removeOldImagesIfDatabaseIsFull() {
 		if (isMaxAllowedSpaceInUse()) {
-			mongoTemplate.findAndRemove(new Query().limit(MAX_DELETE_LIMIT), Image.class);
+			mongoImageTemplate.findAndRemove(new Query().limit(MAX_DELETE_LIMIT), Image.class);
+		}
+	}
+
+	public void removeOldImagesAfter2DaysPeriod() {
+		List<Image> images = getAllImagesTimestamps();
+		for (Image image : images) {
+			DateTime date = new DateTime(image.getTimestamp());
+			if (date.plusDays(DAYS_LIMIT).isBeforeNow()) {
+				mongoImageTemplate.remove(image);
+			}
 		}
 	}
 
@@ -37,7 +61,7 @@ public class ImageTemplateRepository {
 		query.fields().include(Image.FIELD_NAME_BYTES);
 		query.fields().include(Image.FIELD_NAME_CONTENT_TYPE);
 		query.addCriteria(Criteria.where(Image.FIELD_NAME_ID).is(id));
-		return mongoTemplate.findOne(query, Image.class);
+		return mongoImageTemplate.findOne(query, Image.class);
 	}
 
 	public Image getImageMetadatabyId(String id) {
@@ -45,7 +69,13 @@ public class ImageTemplateRepository {
 		query.fields().include(Image.FIELD_NAME_TIMESTAMP);
 		query.fields().include(Image.FIELD_NAME_COMMENT);
 		query.addCriteria(Criteria.where(Image.FIELD_NAME_ID).is(id));
-		return mongoTemplate.findOne(query, Image.class);
+		return mongoImageTemplate.findOne(query, Image.class);
+	}
+
+	public List<Image> getAllImagesTimestamps() {
+		Query query = new Query();
+		query.fields().include(Image.FIELD_NAME_TIMESTAMP);
+		return mongoImageTemplate.find(query, Image.class);
 	}
 
 	public CommandResult getDBStats() {

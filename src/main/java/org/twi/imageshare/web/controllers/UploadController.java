@@ -49,7 +49,6 @@ public class UploadController {
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView indexView() {
-		imageService.removeOldImagesIfNecessary();
 		return new ModelAndView("index", "image", new Image());
 	}
 

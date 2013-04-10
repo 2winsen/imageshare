@@ -1,12 +1,10 @@
 package org.twi.imageshare.services;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.twi.imageshare.entities.Image;
-import org.twi.imageshare.repositories.ImageSpringDataRepository;
 import org.twi.imageshare.repositories.ImageTemplateRepository;
 
 @Service(value = ImageService.IMAGE_SERVICE_BEAN)
@@ -15,35 +13,28 @@ public class ImageService {
 	public static final String IMAGE_SERVICE_BEAN = "imageService";
 
 	@Autowired
-	private ImageSpringDataRepository springDataRepository;
-
-	@Autowired
-	private ImageTemplateRepository templateRepository;
+	private ImageTemplateRepository imageTemplateRepository;
 
 	public Image saveImage(Image image) {
-		springDataRepository.save(image);
+		imageTemplateRepository.save(image);
 		return image;
 	}
 
 	public Image getImageBytesAndContentTypeById(String id) {
-		return templateRepository.getImageBytesAndContentTypeById(id);
+		return imageTemplateRepository.getImageBytesAndContentTypeById(id);
 	}
 
 	public Image getImageMetadatabyId(String id) {
-		return templateRepository.getImageMetadatabyId(id);
-	}
-
-	public List<Image> getAllImages() {
-		return springDataRepository.findAll();
+		return imageTemplateRepository.getImageMetadatabyId(id);
 	}
 
 	public void removeOldImagesIfNecessary() {
-		templateRepository.removeOldImagesIfNecessary();
+		imageTemplateRepository.removeOldImagesIfNecessary();
 	}
 
 	@SuppressWarnings("unchecked")
 	public Map<String, String> getDBStats() {
-		return templateRepository.getDBStats().toMap();
+		return imageTemplateRepository.getDBStats().toMap();
 	}
 
 }
