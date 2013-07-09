@@ -11,27 +11,30 @@
 
 	<!-- Define the MongoTemplate which handles connectivity with MongoDB -->
 	<bean id="mongoImageTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
-		<constructor-arg name="mongo" ref="mongo" />
-		<constructor-arg name="databaseName" value="${image.database.name}" />
+		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
 	</bean>
 	
-	<!-- Factory bean that creates the Mongo instance -->
-	<bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
-		<property name="host" value="localhost" />
-		<property name="port" value="27017" />
-	</bean>
+	<!-- APPFOG -->
+	<mongo:db-factory     
+		id="mongoDbFactory"
+    	dbname="pwdtest"
+    	host="127.0.0.1"
+    	port="1234"
+    	username="test_user"
+    	password="test_pass" />
+    	  
+ 	<!-- DEV -->
+<!-- 	<mongo:db-factory      -->
+<!-- 		id="mongoDbFactory" -->
+<!--     	dbname="pwdtest" -->
+<!--     	host="127.0.0.1" -->
+<!--     	port="27017" -->
+<!--     	username="" -->
+<!--     	password="" /> -->
 
 	<!-- Use this post processor to translate any MongoExceptions thrown in @Repository annotated classes -->
 	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
 	<mongo:repositories base-package="org.twi.imageshare.repositories" />
-
-	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<list>
-				<value>classpath:/META-INF/db.properties</value>
-			</list>
-		</property>
-	</bean>
 
 </beans>
