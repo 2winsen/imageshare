@@ -1,0 +1,13 @@
+// INSTALLING
+Install RUBY
+Install gem af
+
+// DEPLOYING
+1) create WAR file
+2) move WAR file to <dir>
+3) move manifest.yml to <dir>
+4) cd to <dir>
+5) af push
+
+// LOGS
+af logs <app name>

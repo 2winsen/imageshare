@@ -1,0 +1,17 @@
+---
+applications:
+  .:
+    name: imageshare
+    framework:
+      name: spring
+      info:
+        mem: 512M
+        description: Java SpringSource Spring Application
+        exec: 
+    infra: eu-aws
+    url: ${name}.${target-base}
+    mem: 512M
+    instances: 1
+    services:
+      mongodb-f670e:
+        type: mongodb
