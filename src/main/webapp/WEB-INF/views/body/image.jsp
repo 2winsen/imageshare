@@ -24,5 +24,10 @@
 		</div>
 	</div>
 </div>
+
+<div style="margin-bottom: 20px;">
+
+</div>
+
 <script src="<c:url value="/resources/zeroclipboard/ZeroClipboard.min.js"/>" type="text/javascript" charset="utf-8"></script>
 <script src="<c:url value="/resources/imageshare/js/pages/image.js"/>" type="text/javascript" charset="utf-8"></script>

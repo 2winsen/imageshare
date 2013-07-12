@@ -5,30 +5,42 @@
 
 <tiles-definitions>
 
-  <definition name="indexPage" template="/WEB-INF/layout/default.jsp">
-  	<put-attribute name="header" value="/WEB-INF/views/tiles/header-tile.jsp" />
-    <put-attribute name="body" value="/WEB-INF/views/tiles/upload-tile.jsp" />
-    <put-attribute name="footer" value="/WEB-INF/views/tiles/footer-tile.jsp" />
-  </definition>
-  
-  <definition name="imagePage" extends="indexPage">
-    <put-attribute name="body" value="/WEB-INF/views/tiles/image-tile.jsp" />
-  </definition>
-  
-  <definition name="statusPage" extends="indexPage">
-    <put-attribute name="body" value="/WEB-INF/views/tiles/status-tile.jsp" />
-  </definition>
-  
-  <definition name="termsPage" extends="indexPage">
-    <put-attribute name="body" value="/WEB-INF/views/tiles/terms-tile.jsp" />
-  </definition>
-  
-  <definition name="resourceNotFoundPage" extends="indexPage">
-    <put-attribute name="body" value="/WEB-INF/views/tiles/resourceNotFound-tile.jsp" />
-  </definition>
-  
-  <definition name="uncaughtExceptionPage" extends="indexPage">
-    <put-attribute name="body" value="/WEB-INF/views/tiles/uncaughtException-tile.jsp" />
-  </definition>
-  
+	<definition name="defaultPage" template="/WEB-INF/layout/default.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/layout/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/layout/footer.jsp" />
+	</definition>
+
+	<definition name="uploadPage" extends="defaultPage">
+		<put-attribute name="body"
+			value="/WEB-INF/views/body/upload.jsp" />
+	</definition>
+
+	<definition name="imagePage" extends="defaultPage">
+		<put-attribute name="body"
+			value="/WEB-INF/views/body/image.jsp" />
+	</definition>
+
+	<definition name="maintenancePage" extends="defaultPage">
+		<put-attribute name="body"
+			value="/WEB-INF/views/body/maintenance.jsp" />
+	</definition>
+
+	<definition name="termsPage" extends="defaultPage">
+		<put-attribute name="body"
+			value="/WEB-INF/views/body/terms.jsp" />
+	</definition>
+
+	<definition name="resourceNotFoundPage" extends="defaultPage">
+		<put-attribute name="body"
+			value="/WEB-INF/views/body/resourceNotFound.jsp" />
+	</definition>
+
+	<definition name="uncaughtExceptionPage" extends="defaultPage">
+		<put-attribute name="body"
+			value="/WEB-INF/views/body/uncaughtException.jsp" />
+	</definition>
+
 </tiles-definitions>

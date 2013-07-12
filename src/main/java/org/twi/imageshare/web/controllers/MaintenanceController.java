@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.twi.imageshare.services.ImageService;
 
 @Controller
-@RequestMapping("/status")
-public class StatusController {
+@RequestMapping("/maintenance")
+public class MaintenanceController {
 
 	@Resource(name = ImageService.IMAGE_SERVICE_BEAN)
 	private ImageService imageService;
@@ -18,7 +18,7 @@ public class StatusController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String statusView(ModelMap model) {
 		model.addAttribute("stats", imageService.getDBStats());
-		return "status";
+		return "maintenancePage";
 	}
 
 }

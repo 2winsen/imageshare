@@ -2,6 +2,13 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<script type="text/javascript">
+	var RecaptchaOptions = {
+		lang : 'en',
+		theme : 'clean'
+	};
+</script>
+
 <div class="fileupload fileupload-new" data-provides="fileupload">
 	<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
 		<img src="<c:url value="/resources/imageshare/img/no_preview.png"/>" />
@@ -11,6 +18,8 @@
 	<div>
 		<form:form id="uploadForm" method="post" modelAttribute="image">
 			<form:input id="comment" type="hidden" path="comment" />
+			<input id="captcha_response" name="captcha_response" type="hidden"  />
+			<input id="captcha_challenge" name="captcha_challenge" type="hidden"  />
 			<span class="btn btn-link btn-file"> <span class="fileupload-new"><spring:message
 						code="app.upload.select.image" /></span> <span class="fileupload-exists"><spring:message code="app.upload.change" /></span>
 				<form:input id="imageFile" type="file" value="browse" path="file" />
@@ -18,13 +27,12 @@
 			<a href="#" class="btn btn-link fileupload-exists" data-dismiss="fileupload"><spring:message
 					code="app.upload.remove" /></a>
 		</form:form>
-		
-			<label class="checkbox inline" style="padding-bottom: 10px; padding-top: 10px;">
-				<input id="termsCheckbox" type="checkbox" name="checkbox" /><span style="padding-left: 5px;"><spring:message code="app.upload.i.agree" />&nbsp;<a href="<c:url value="/terms" />"><spring:message code="app.terms.link" /></a></span>
-			</label>
-			<div>
-			<input id="share1" class="btn btn-large btn-primary" type="button"
-				value="<spring:message code="app.upload.continue" />" disabled="disabled" />
+		<label class="checkbox inline" style="padding-bottom: 10px; padding-top: 10px;">
+			<input id="termsCheckbox" type="checkbox" name="checkbox" /><span style="padding-left: 5px;"><spring:message code="app.upload.i.agree" />&nbsp;<a href="<c:url value="/terms" />"><spring:message code="app.terms.link" /></a></span>
+		</label>
+		<div>
+		<input id="share1" class="btn btn-large btn-primary" type="button"
+			value="<spring:message code="app.upload.continue" />" disabled="disabled" />
 		</div>
 	</div>
 </div>
@@ -38,16 +46,25 @@
 			<spring:message code="app.upload.comment" />
 		</h4>
 	</div>
-	<div class="modal-body">
+	<div class="modal-body" style="padding-bottom: 0px;">
 		<textarea id="commentTemp" rows="2" cols="50" maxlength="200"
 			style="margin: 0px 0px 10px; height: 112px; width: 516px;"></textarea>
 	</div>
+	<div id="captchaErrorContainer" style="padding-left: 10px; padding-right: 10px;"></div>
+	<script type="text/javascript" src="http://api.recaptcha.net/challenge?k=6LfWX-QSAAAAALqL0OXbCI5OEnPDRjZEsCZaBo5H"></script>
+	<noscript>
+	    <iframe src="http://api.recaptcha.net/noscript?k=6LfWX-QSAAAAALqL0OXbCI5OEnPDRjZEsCZaBo5H" height="300" width="500" frameborder="0"></iframe><br>
+	    <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+	    </textarea>
+		<input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+	</noscript>	
 	<div class="modal-footer">
-		<button id="share2" class="btn btn-large btn-primary" data-dismiss="modal" aria-hidden="true">
+		<button id="share2" class="btn btn-danger btn-primary" data-dismiss="" aria-hidden="false">
 			<spring:message code="app.upload.share" />
 		</button>
 	</div>
 </div>
+
 <script src="<c:url value="/resources/imageshare/js/pages/upload.js"/>" type="text/javascript" charset="utf-8"></script>
-<script src="<c:url value="/resources/bootstrap-fileupload/bootstrap-fileupload.min.js"/>" type="text/javascript"
-	charset="utf-8"></script>
+<script src="<c:url value="/resources/bootstrap-fileupload/bootstrap-fileupload.min.js"/>" type="text/javascript" charset="utf-8"></script>
+	

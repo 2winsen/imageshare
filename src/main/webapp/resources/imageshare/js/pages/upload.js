@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	$("#wrap").attr("style", "margin-bottom: -80px");
+	
 	$("#share1").prop('disabled', true);
 	
 	$("#imageFile").change(function() {
@@ -10,26 +12,31 @@ $(document).ready(function() {
 
 	$('#share1').click(function() {
 		$('#commentModal').modal('show');
-		$('#commentTemp').val(null);
 	});
 
 	$('#share2').click(function() {
 		// Copies comment value from popup
 		$('#comment').val($('#commentTemp').val());
-		$('#commentTemp').val(null);
+		$('#captcha_response').val($('#recaptcha_response_field').val());
+		$('#captcha_challenge').val($('#recaptcha_challenge_field').val());
 		$('#uploadForm').submit();
 	});
 
 	$("#uploadForm").ajaxForm({
-		clearForm : true,
+		clearForm : false,
 		success : function(response) {
 			if (response != null) {
-				if (response.errors != null) {
-					for ( var i = 0; i < response.errors.length; i++) {
-						showAlert(response.errors[i]);
-					}
+				if (response.captchaError != null) {
+					showCaptchaError(response.captchaError);
 				} else {
-					window.location = response.response;
+					if (response.errors != null) {
+						for ( var i = 0; i < response.errors.length; i++) {
+							// modal close
+							showAlert(response.errors[i]);
+						}
+					} else {
+						window.location = response.response;
+					}					
 				}
 			}
 		}
@@ -41,6 +48,13 @@ function showAlert(text) {
 			+ "<strong>Warning!</strong>&nbsp;<span>"
 			+ text + "</span>" + "</div>";
 	$("#errorsContainer").append(alertHtml);
+}
+
+function showCaptchaError(text) {
+	var errorHtml = "<div class='alert alert-error'>"
+		+ "<strong>Warning!</strong>&nbsp;<span>"
+		+ text + "</span>" + "</div>";
+	$("#captchaErrorContainer").html(errorHtml);
 }
 
 function enableShareButton() {

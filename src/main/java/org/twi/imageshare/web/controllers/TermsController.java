@@ -10,7 +10,7 @@ public class TermsController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String statusView() {
-		return "terms";
+		return "termsPage";
 	}
 
 }

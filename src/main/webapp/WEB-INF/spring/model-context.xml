@@ -15,22 +15,22 @@
 	</bean>
 	
 	<!-- APPFOG -->
-	<mongo:db-factory     
-		id="mongoDbFactory"
-    	dbname="pwdtest"
-    	host="127.0.0.1"
-    	port="1234"
-    	username="test_user"
-    	password="test_pass" />
-    	  
- 	<!-- DEV -->
 <!-- 	<mongo:db-factory      -->
 <!-- 		id="mongoDbFactory" -->
 <!--     	dbname="pwdtest" -->
 <!--     	host="127.0.0.1" -->
-<!--     	port="27017" -->
-<!--     	username="" -->
-<!--     	password="" /> -->
+<!--     	port="1234" -->
+<!--     	username="test_user" -->
+<!--     	password="test_pass" /> -->
+    	  
+ 	<!-- DEV -->
+	<mongo:db-factory     
+		id="mongoDbFactory"
+    	dbname="pwdtest"
+    	host="127.0.0.1"
+    	port="27017"
+    	username=""
+    	password="" />
 
 	<!-- Use this post processor to translate any MongoExceptions thrown in @Repository annotated classes -->
 	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />

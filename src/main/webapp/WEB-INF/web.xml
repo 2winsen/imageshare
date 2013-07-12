@@ -31,12 +31,12 @@
 
 	<error-page>
 		<exception-type>java.lang.Exception</exception-type>
-		<location>/WEB-INF/views/uncaughtException.jsp</location>
+		<location>/WEB-INF/views/layout/uncaughtException-layout.jsp</location>
 	</error-page>
 
 	<error-page>
 		<error-code>404</error-code>
-		<location>/WEB-INF/views/resourceNotFound.jsp</location>
+		<location>/WEB-INF/views/layout/resourceNotFound-layout.jsp</location>
 	</error-page>
 
 </web-app>

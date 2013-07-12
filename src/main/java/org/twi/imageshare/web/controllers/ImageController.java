@@ -36,9 +36,9 @@ public class ImageController {
 			model.addAttribute("url", paramHttpServletRequest.getRequestURL());
 			model.addAttribute("date", new Date(image.getTimestamp()));
 		} else {
-			return "resourceNotFound";
+			return "resourceNotFoundPage";
 		}
-		return "image";
+		return "imagePage";
 	}
 
 	@RequestMapping(value = "/image_src/{imageId}", method = RequestMethod.GET)
