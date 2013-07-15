@@ -1,5 +1,5 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<div>
+<div style="text-align: center;">
 	<h3>
 		<spring:message code="app.terms.title" />
 	</h3>

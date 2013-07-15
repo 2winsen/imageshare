@@ -9,7 +9,7 @@
 	};
 </script>
 
-<div class="fileupload fileupload-new" data-provides="fileupload">
+<div class="fileupload fileupload-new" data-provides="fileupload" style="text-align: center;">
 	<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
 		<img src="<c:url value="/resources/imageshare/img/no_preview.png"/>" />
 	</div>
@@ -51,6 +51,8 @@
 			style="margin: 0px 0px 10px; height: 112px; width: 516px;"></textarea>
 	</div>
 	<div id="captchaErrorContainer" style="padding-left: 10px; padding-right: 10px;"></div>
+	<div id="recaptcha_widget_div" style="padding-left: 55px; margin: auto; padding-bottom: 10px;"></div>
+	
 	<script type="text/javascript" src="http://api.recaptcha.net/challenge?k=6LfWX-QSAAAAALqL0OXbCI5OEnPDRjZEsCZaBo5H"></script>
 	<noscript>
 	    <iframe src="http://api.recaptcha.net/noscript?k=6LfWX-QSAAAAALqL0OXbCI5OEnPDRjZEsCZaBo5H" height="300" width="500" frameborder="0"></iframe><br>

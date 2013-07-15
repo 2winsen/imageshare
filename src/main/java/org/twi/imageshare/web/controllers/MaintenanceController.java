@@ -16,7 +16,12 @@ public class MaintenanceController {
 	private ImageService imageService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String statusView(ModelMap model) {
+	public String indexView() {
+		return "maintenanceAuthPage";
+	}
+	
+	@RequestMapping(method = RequestMethod.POST)
+	public String maintenanceAuth(ModelMap model) {
 		model.addAttribute("stats", imageService.getDBStats());
 		return "maintenancePage";
 	}

@@ -2,7 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<div>
+<div style="text-align: center;">
 	<div style="padding-bottom: 15px;" class="input-append">
 		<input id="ZeroClipboard_swf" type="hidden" value="<c:url value="/resources/zeroclipboard/ZeroClipboard.swf"/>" /> 
 		<input style="width: 500px;" readonly class="span2" id="appendedInputButton" type="text" value="${url}"> 

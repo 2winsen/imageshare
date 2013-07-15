@@ -23,6 +23,11 @@
 			value="/WEB-INF/views/body/image.jsp" />
 	</definition>
 
+	<definition name="maintenanceAuthPage" extends="defaultPage">
+		<put-attribute name="body"
+			value="/WEB-INF/views/body/maintenance-auth.jsp" />
+	</definition>
+	
 	<definition name="maintenancePage" extends="defaultPage">
 		<put-attribute name="body"
 			value="/WEB-INF/views/body/maintenance.jsp" />
