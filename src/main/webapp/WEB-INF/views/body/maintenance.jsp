@@ -5,6 +5,9 @@
 		<spring:message code="app.status.title" />
 	</h3>
 	
+	<div style="padding-top: 10px; padding-bottom: 10px;">
+		<input id="clearDBButton" type="button" class="btn btn-danger btn-primary" value="Clear DB!?" />
+	</div>
 	
 	<c:forEach var="stat" items="${stats}">
 		<div style="padding: 5px 5px 5px 5px;">
@@ -12,3 +15,5 @@
 		</div>
 	</c:forEach>
 </div>
+
+<script src="<c:url value="/resources/imageshare/js/pages/maintenance.js"/>" type="text/javascript" charset="utf-8"></script>

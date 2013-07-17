@@ -44,4 +44,4 @@
 
 </div>
 
-<script src="<c:url value="/resources/imageshare/js/pages/maintenance-auth.js"/>" type="text/javascript" charset="utf-8"></script>
+<script src="<c:url value="/resources/imageshare/js/pages/maintenance.js"/>" type="text/javascript" charset="utf-8"></script>

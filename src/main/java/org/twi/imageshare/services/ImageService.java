@@ -31,6 +31,10 @@ public class ImageService {
 	public void removeOldImagesIfNecessary() {
 		imageTemplateRepository.removeOldImagesIfNecessary();
 	}
+	
+	public void removeAll() {
+		imageTemplateRepository.removeAll();
+	}
 
 	@SuppressWarnings("unchecked")
 	public Map<String, String> getDBStats() {

@@ -55,6 +55,10 @@ public class ImageTemplateRepository {
 			}
 		}
 	}
+	
+	public void removeAll() {
+		mongoImageTemplate.remove(new Query(), Image.class);
+	}
 
 	public Image getImageBytesAndContentTypeById(String id) {
 		Query query = new Query();

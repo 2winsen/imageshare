@@ -7,6 +7,7 @@ public class JsonResponse {
 
 	private Object response;
 	private List<String> errors;
+	private String success;
 	private String captchaError;
 
 	public Object getResponse() {
@@ -38,6 +39,14 @@ public class JsonResponse {
 			errors = new ArrayList<String>();
 		}
 		errors.add(error);
+	}
+
+	public String getSuccess() {
+		return success;
+	}
+
+	public void setSuccess(String success) {
+		this.success = success;
 	}
 
 }
