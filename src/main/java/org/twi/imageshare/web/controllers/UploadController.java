@@ -6,7 +6,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import net.tanesha.recaptcha.ReCaptchaImpl;
+import net.tanesha.recaptcha.ReCaptcha;
 import net.tanesha.recaptcha.ReCaptchaResponse;
 
 import org.slf4j.Logger;
@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.twi.imageshare.entities.Image;
 import org.twi.imageshare.services.ImageService;
-import org.twi.imageshare.utils.GlobalUtils;
 import org.twi.imageshare.web.controllers.params.JsonResponse;
 import org.twi.imageshare.web.validators.ImageValidator;
 
@@ -42,6 +41,9 @@ public class UploadController {
 
 	@Autowired
 	private ApplicationContext context;
+	
+	@Autowired
+	private ReCaptcha recaptcha;
 
 	@Resource(name = ImageService.IMAGE_SERVICE_BEAN)
 	private ImageService imageService;
@@ -76,10 +78,7 @@ public class UploadController {
 			HttpServletRequest paramHttpServletRequest) {
 		JsonResponse jsonResponse = new JsonResponse();
 	    String remoteAddr = paramHttpServletRequest.getRemoteAddr();
-	    ReCaptchaImpl reCaptcha = new ReCaptchaImpl();
-	    reCaptcha.setPrivateKey(GlobalUtils.RECAPTCHA_PRIVATE_KEY);
-	    ReCaptchaResponse reCaptchaResponse =
-	            reCaptcha.checkAnswer(remoteAddr, challenge, response);
+	    ReCaptchaResponse reCaptchaResponse = recaptcha.checkAnswer(remoteAddr, challenge, response);
 	    if (!reCaptchaResponse.isValid()) {
 	    	jsonResponse.setCaptchaError(context.getMessage("error.bad.captcha", null, Locale.getDefault()));
 	    	return jsonResponse;

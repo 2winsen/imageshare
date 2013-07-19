@@ -2,13 +2,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<script type="text/javascript">
-	var RecaptchaOptions = {
-		lang : 'en',
-		theme : 'clean'
-	};
-</script>
-
 <div class="fileupload fileupload-new" data-provides="fileupload" style="text-align: center;">
 	<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
 		<img src="<c:url value="/resources/imageshare/img/no_preview.png"/>" />
@@ -53,13 +46,8 @@
 	<div id="captchaErrorContainer" style="padding-left: 10px; padding-right: 10px;"></div>
 	<div id="recaptcha_widget_div" style="padding-left: 55px; margin: auto; padding-bottom: 10px;"></div>
 	
-	<script type="text/javascript" src="http://api.recaptcha.net/challenge?k=6LfWX-QSAAAAALqL0OXbCI5OEnPDRjZEsCZaBo5H"></script>
-	<noscript>
-	    <iframe src="http://api.recaptcha.net/noscript?k=6LfWX-QSAAAAALqL0OXbCI5OEnPDRjZEsCZaBo5H" height="300" width="500" frameborder="0"></iframe><br>
-	    <textarea name="recaptcha_challenge_field" rows="3" cols="40">
-	    </textarea>
-		<input type="hidden" name="recaptcha_response_field" value="manual_challenge">
-	</noscript>	
+	<%@ include file="/WEB-INF/views/body/recaptcha.jsp" %>
+		
 	<div class="modal-footer">
 		<button id="share2" class="btn btn-danger btn-primary" data-dismiss="" aria-hidden="false">
 			<spring:message code="app.upload.share" />

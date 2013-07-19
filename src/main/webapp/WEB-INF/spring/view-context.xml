@@ -34,5 +34,13 @@
 		</property>
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
+	
+	<bean id="recaptcha" class="net.tanesha.recaptcha.ReCaptchaImpl">
+		<!-- DEV -->
+		<property name="privateKey" value="6LfWX-QSAAAAAG69dKQ_CW_nNvNg5o0QDr-ol2Dk"></property>
+		<!-- PROD -->
+<!-- 		<property name="privateKey" value="6LfWX-QSAAAAAG69dKQ_CW_nNvNg5o0QDr-ol2Dk"></property> -->
+	</bean>
+	
 
 </beans>

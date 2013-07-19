@@ -26,38 +26,23 @@ $(document).ready(function() {
 		clearForm : false,
 		success : function(response) {
 			if (response != null) {
+				$('#recaptcha_challenge_field').val('');
+				Recaptcha.reload();
 				if (response.captchaError != null) {
-					showCaptchaError(response.captchaError);
+					CommonModule.showCaptchaErrorMessage(response.captchaError);
 				} else {
 					if (response.errors != null) {
-						for ( var i = 0; i < response.errors.length; i++) {
-							// modal close
-							showAlert(response.errors[i]);
-						}
+						CommonModule.showErrorMessages(response.errors);
+						$('#commentModal').modal('hide');
 					} else {
 						window.location = response.response;
 					}					
 				}
 			}
 		},
-		error : function () {
-		}
+		error: CommonModule.generalErrorHandler
 	});
 });
-
-function showAlert(text) {
-	var alertHtml = "<div class='alert alert-error'>"
-			+ "<strong>Warning!</strong>&nbsp;<span>"
-			+ text + "</span>" + "</div>";
-	$("#errorsContainer").append(alertHtml);
-}
-
-function showCaptchaError(text) {
-	var errorHtml = "<div class='alert alert-error'>"
-		+ "<strong>Warning!</strong>&nbsp;<span>"
-		+ text + "</span>" + "</div>";
-	$("#captchaErrorContainer").html(errorHtml);
-}
 
 function enableShareButton() {
 	if ($("#imageFile").val() && $('#termsCheckbox').is(':checked')) {
