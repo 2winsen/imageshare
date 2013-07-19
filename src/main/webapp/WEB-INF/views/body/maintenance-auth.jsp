@@ -38,3 +38,8 @@
 </div>
 
 <script src="<c:url value="/resources/imageshare/js/pages/maintenance.js"/>" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#wrap").attr("style", "margin-bottom: -80px");
+	});
+</script>

@@ -1,6 +1,4 @@
 $(document).ready(function() {
-	$("#wrap").attr("style", "margin-bottom: -80px");
-	
 	$("#share1").prop('disabled', true);
 	
 	$("#imageFile").change(function() {
@@ -26,8 +24,7 @@ $(document).ready(function() {
 		clearForm : false,
 		success : function(response) {
 			if (response != null) {
-				$('#recaptcha_challenge_field').val('');
-				Recaptcha.reload();
+				CommonModule.recaptchaRefresh();
 				if (response.captchaError != null) {
 					CommonModule.showCaptchaErrorMessage(response.captchaError);
 				} else {

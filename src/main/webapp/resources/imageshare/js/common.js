@@ -11,21 +11,33 @@ var CommonModule = (function() {
 			$.each(messages, function(index, value) {
 				errorMessage += value + '\n';
 			});
-			var alertHtml = "<div class='alert alert-error'>"
+			var messageHtml = "<div class='alert alert-error'>"
 				+ "<strong>Warning!</strong>&nbsp;<span>"
 				+ errorMessage + "</span>" + "</div>";
-			$("#errorsContainer").append(alertHtml);
+			$("#messagesContainer").append(messageHtml);
 		},
 		
 		showCaptchaErrorMessage : function(text) {
-			var errorHtml = "<div class='alert alert-error'>"
+			var messageHtml = "<div class='alert alert-error'>"
 				+ "<strong>Warning!</strong>&nbsp;<span>"
 				+ text + "</span>" + "</div>";
-			$("#captchaErrorContainer").html(errorHtml);
+			$("#captchaErrorContainer").html(messageHtml);
 		},
 		
 		showSuccessMessage : function(text) {
-			
+			var messageHtml = "<div class='alert alert-info'>"
+				+ "<strong>Success.</strong>&nbsp;<span>"
+				+ text + "</span>" + "</div>";
+			$("#messagesContainer").append(messageHtml);
+		},
+		
+		salt : function() {
+		    return "8ngYIQWeqm";
+		},
+		
+		recaptchaRefresh : function() {
+			$('#recaptcha_challenge_field').val('');
+			Recaptcha.reload();
 		}
 	};
 	

@@ -14,6 +14,7 @@
 	<script src="<c:url value="/resources/jquery/jquery-1.9.1.min.js"/>" type="text/javascript" charset="utf-8"></script>
 	<script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>" type="text/javascript" charset="utf-8"></script>
 	<script src="<c:url value="/resources/jquery/jquery.form.js" />" type="text/javascript" charset="utf-8"></script>
+	<script src="<c:url value="/resources/sha256.js" />" type="text/javascript" charset="utf-8"></script>
 	
 	<script src="<c:url value="/resources/imageshare/js/common.js"/>" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
@@ -30,7 +31,7 @@
 				<tiles:insertAttribute name="header" />
 			</div>
 			<div>
-				<div id="errorsContainer"></div>
+				<div id="messagesContainer"></div>
 				<tiles:insertAttribute name="body" />
 			</div>
 		</div>
