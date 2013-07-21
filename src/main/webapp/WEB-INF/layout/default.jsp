@@ -23,6 +23,10 @@
 </head>
 
 <body>
+	<noscript>
+		<h2><spring:message code="error.no.js" /></h2>
+	</noscript>
+
 	<div id="wrap">
 
 		<!-- Begin page content -->

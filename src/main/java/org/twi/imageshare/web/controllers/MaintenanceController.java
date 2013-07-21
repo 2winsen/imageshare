@@ -25,6 +25,10 @@ public class MaintenanceController {
 	
 	private static final String EMAIL = "";
 	private static final String PASSWORD = "3444c0211ae0b5275bc6a7980f9d7ac4728bb6cbc75982e0026b6fc0507a4ab8";
+	private static final Integer MAX_LOGIN_ATTEMPTS = 3;
+	
+	private static final String SESSION_ATTR_IS_AUTHENTICATED = "isAuthenticated";
+	private static final String SESSION_ATTR_LOGIN_ATTEMPT = "loginAttempt";
 	
 	@Autowired
 	private ApplicationContext context;
@@ -42,6 +46,9 @@ public class MaintenanceController {
 			modelAndView.addObject("stats", imageService.getDBStats());
 			modelAndView.setViewName("maintenancePage");
 		} else {
+			if (isMaxAttempts(paramHttpServletRequest)) {
+				modelAndView.addObject("showCaptcha", "showCaptcha");
+			}
 			modelAndView.setViewName("maintenanceAuthPage");
 		}
 		return modelAndView;
@@ -50,23 +57,40 @@ public class MaintenanceController {
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody JsonResponse maintenanceAuth(@RequestParam(value = "email", required=true) String email,
 			@RequestParam(value = "password", required=true) String password,
-			@RequestParam(value = "recaptcha_challenge_field", required=true) String challenge,
-			@RequestParam(value = "recaptcha_response_field", required=true) String response,
+			@RequestParam(value = "recaptcha_challenge_field", required=false) String challenge,
+			@RequestParam(value = "recaptcha_response_field", required=false) String response,
 			HttpServletRequest paramHttpServletRequest) {
 		JsonResponse jsonResponse = new JsonResponse();
-	    String remoteAddr = paramHttpServletRequest.getRemoteAddr();
-	    ReCaptchaResponse reCaptchaResponse = recaptcha.checkAnswer(remoteAddr, challenge, response);
-	    if (!reCaptchaResponse.isValid()) {
-	    	jsonResponse.setCaptchaError(context.getMessage("error.bad.captcha", null, Locale.getDefault()));
-	    	return jsonResponse;
-	    }
+		
+		if (isMaxAttempts(paramHttpServletRequest)) {
+			String remoteAddr = paramHttpServletRequest.getRemoteAddr();
+			ReCaptchaResponse reCaptchaResponse = recaptcha.checkAnswer(remoteAddr, challenge, response);
+			if (!reCaptchaResponse.isValid()) {
+				jsonResponse.setCaptchaError(context.getMessage("error.bad.captcha", null, Locale.getDefault()));
+				return jsonResponse;
+			}
+		}
+		
 		if (credentialsValid(email, password)) {
 			jsonResponse.setResponse(paramHttpServletRequest.getRequestURL());
-			paramHttpServletRequest.getSession().setAttribute("isAuthenticated", true);
+			paramHttpServletRequest.getSession().setAttribute(SESSION_ATTR_IS_AUTHENTICATED, true);			
 		} else {
+			Integer attempts = (Integer)paramHttpServletRequest.getSession().getAttribute(SESSION_ATTR_LOGIN_ATTEMPT);
+			if (attempts == null) {
+				attempts = 0;
+			} 
+			paramHttpServletRequest.getSession().setAttribute(SESSION_ATTR_LOGIN_ATTEMPT, ++attempts);
+			if (attempts >= MAX_LOGIN_ATTEMPTS) {
+				jsonResponse.setResponse("showCaptcha");	
+			}			
 	    	jsonResponse.appendError(context.getMessage("error.bad.credentials", null, Locale.getDefault()));
 		}
 		return jsonResponse;
+	}
+	
+	private boolean isMaxAttempts(HttpServletRequest paramHttpServletRequest) {
+		Integer attempts = (Integer)paramHttpServletRequest.getSession().getAttribute(SESSION_ATTR_LOGIN_ATTEMPT);
+		return attempts != null && attempts >= MAX_LOGIN_ATTEMPTS;
 	}
 	
 	private boolean credentialsValid(String email, String password) {
@@ -74,7 +98,7 @@ public class MaintenanceController {
 	}
 	
 	private boolean isAuthenticated(HttpServletRequest paramHttpServletRequest) {
-		Object result = paramHttpServletRequest.getSession().getAttribute("isAuthenticated");
+		Object result = paramHttpServletRequest.getSession().getAttribute(SESSION_ATTR_IS_AUTHENTICATED);
 		if (result != null) {
 			return (Boolean)result;
 		}

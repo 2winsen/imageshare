@@ -1,5 +1,9 @@
 $(document).ready(function() {
 	
+	if ($('#captchaTr').attr('showCaptcha') == 'showCaptcha') {
+		$('#captchaTr').attr('style', 'display: table-row;');
+	}
+	
 	$("#maintenanceAuthForm").ajaxForm({
 		clearForm : false,
 		beforeSubmit: function (formData, jqForm, options) {
@@ -12,6 +16,9 @@ $(document).ready(function() {
 					CommonModule.showCaptchaErrorMessage(response.captchaError);
 				} else {
 					if (response.errors != null) {
+						if (response.response == 'showCaptcha') {
+							$('#captchaTr').attr('style', 'display: table-row;');
+						}
 						$("#captchaErrorContainer").html('');
 						CommonModule.showErrorMessages(response.errors);
 					} else {
@@ -29,6 +36,7 @@ $(document).ready(function() {
 			url: CONTEXT_PATH + "/maintenance/clearDB",
 			dataType: "json",
 			success: function(response) {
+				location.reload();
 				CommonModule.showSuccessMessage(response.success);
 			},
 			error: CommonModule.generalErrorHandler

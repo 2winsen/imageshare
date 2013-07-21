@@ -36,8 +36,10 @@ var CommonModule = (function() {
 		},
 		
 		recaptchaRefresh : function() {
-			$('#recaptcha_challenge_field').val('');
-			Recaptcha.reload();
+			if (typeof(Recaptcha) != 'undefined') {
+				$('#recaptcha_challenge_field').val('');
+				Recaptcha.reload();
+			}
 		}
 	};
 	
