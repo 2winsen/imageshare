@@ -14,7 +14,7 @@
 				<td><input id="email" name="email" type="text" placeholder="Email"></td>
 			</tr>
 			<tr>
-				<td style="padding-right: 20px;">Password:</td>
+				<td>Password:</td>
 				<td><input id="password" name="password" type="password" placeholder="Password"></td>
 			</tr>
 			<tr id="captchaTr" style="display: none;" showCaptcha="${showCaptcha}">
@@ -38,10 +38,8 @@
 </div>
 
 <script src="<c:url value="/resources/imageshare/js/pages/maintenance.js"/>" type="text/javascript" charset="utf-8"></script>
-<c:if test="${showCaptcha}">
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#wrap").attr("style", "margin-bottom: -80px");
 	});
 </script>
-</c:if>
