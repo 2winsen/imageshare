@@ -10,8 +10,8 @@
 	 <form id="maintenanceAuthForm" action="#" method="post">
 		<table>
 			<tr>
-				<td>Email:</td>
-				<td><input id="email" name="email" type="text" placeholder="Email"></td>
+				<td style="padding-right: 50px;">Email:</td>
+				<td style="width: 500px;"><input id="email" name="email" type="text" placeholder="Email"></td>
 			</tr>
 			<tr>
 				<td>Password:</td>
@@ -37,7 +37,7 @@
 
 </div>
 
-<script src="<c:url value="/resources/imageshare/js/pages/maintenance.js"/>" type="text/javascript" charset="utf-8"></script>
+<script src="<c:url value="/resources/imageshare/js/pages/maintenance-auth.js"/>" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#wrap").attr("style", "margin-bottom: -80px");

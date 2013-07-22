@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.twi.imageshare.services.ImageService;
 import org.twi.imageshare.web.controllers.params.JsonResponse;
 
@@ -40,11 +41,19 @@ public class MaintenanceController {
 	private ReCaptcha recaptcha;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView indexView(HttpServletRequest paramHttpServletRequest) {
+	public ModelAndView indexView(HttpServletRequest paramHttpServletRequest, 
+			@RequestParam(value = "success", required=false) Boolean successRedirectAttr) {
 		ModelAndView modelAndView = new ModelAndView();
 		if (isAuthenticated(paramHttpServletRequest)) {
 			modelAndView.addObject("stats", imageService.getDBStats());
 			modelAndView.setViewName("maintenancePage");
+			if (successRedirectAttr != null) {
+				if (successRedirectAttr) {
+					modelAndView.addObject("success", context.getMessage("app.maintenance.db.clear.success", null, Locale.getDefault()));
+				} else {
+					modelAndView.addObject("error", context.getMessage("app.maintenance.db.clear.error", null, Locale.getDefault()));
+				}
+			}
 		} else {
 			if (isMaxAttempts(paramHttpServletRequest)) {
 				modelAndView.addObject("showCaptcha", "showCaptcha");
@@ -106,19 +115,18 @@ public class MaintenanceController {
 	}
 	
 	@RequestMapping(value = "/clearDB", method = RequestMethod.POST)
-	public @ResponseBody JsonResponse clearDB(HttpServletRequest paramHttpServletRequest) {
-		JsonResponse response = new JsonResponse();
+	public String clearDB(HttpServletRequest paramHttpServletRequest, RedirectAttributes redirectAttributes) {
 		try {
 			if (isAuthenticated(paramHttpServletRequest)) {
 				imageService.removeAll();
-				response.setSuccess(context.getMessage("app.maintenance.db.clear.success", null, Locale.getDefault()));
+				redirectAttributes.addAttribute("success", true);
 			} else {
 				throw new Exception();
 			}			
 		} catch (Exception e) {
-			response.appendError(context.getMessage("app.maintenance.db.clear.error", null, Locale.getDefault()));
+			redirectAttributes.addAttribute("success", false);
 		}
-		return response;
+		return "redirect:/maintenance";
 	}
 
 }

@@ -5,9 +5,11 @@
 		<spring:message code="app.status.title" />
 	</h3>
 	
-	<div style="padding-top: 10px; padding-bottom: 10px;">
-		<input id="clearDBButton" type="button" class="btn btn-danger btn-primary" value="Clear DB!?" />
-	</div>
+	<form style="padding-top: 10px; padding-bottom: 10px;" action="maintenance/clearDB" method="post">
+		<input id="successMessage" type="hidden" value="${success}" />
+		<input id="errorMessage" type="hidden" value="${error}" />
+		<input id="clearDBButton" type="submit" class="btn btn-danger btn-primary" value="Clear DB!?" />
+	</form>
 	
 	<c:forEach var="stat" items="${stats}">
 		<div style="padding: 5px 5px 5px 5px;">
@@ -16,4 +18,12 @@
 	</c:forEach>
 </div>
 
-<script src="<c:url value="/resources/imageshare/js/pages/maintenance.js"/>" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		if ($("#successMessage").val() != "") {
+			CommonModule.showSuccessMessage($("#successMessage").val());
+		} else if ($("#errorMessage").val() != "") {
+			CommonModule.showErrorMessages([$("#errorMessage").val()]);
+		}
+	});
+</script>

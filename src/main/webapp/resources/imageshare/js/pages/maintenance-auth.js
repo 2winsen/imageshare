@@ -30,17 +30,5 @@ $(document).ready(function() {
 		error: CommonModule.generalErrorHandler
 	});
 	
-	$("#clearDBButton").click(function() {
-		$.ajax({
-			type: 'POST',
-			url: CONTEXT_PATH + "/maintenance/clearDB",
-			dataType: "json",
-			success: function(response) {
-				location.reload();
-				CommonModule.showSuccessMessage(response.success);
-			},
-			error: CommonModule.generalErrorHandler
-		});	
-	});
 });
 
