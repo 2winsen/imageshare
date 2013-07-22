@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="fileupload fileupload-new" data-provides="fileupload" style="text-align: center;">
-	<div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+	<div class="fileupload-new thumbnail" style="width: 300px; height: 225px;">
 		<img src="<c:url value="/resources/imageshare/img/no_preview.png"/>" />
 	</div>
 	<div class="fileupload-preview fileupload-exists thumbnail"
