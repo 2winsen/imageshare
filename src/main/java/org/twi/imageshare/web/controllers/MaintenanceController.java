@@ -24,7 +24,8 @@ import org.twi.imageshare.web.controllers.params.JsonResponse;
 @RequestMapping("/maintenance")
 public class MaintenanceController {
 	
-	private static final String EMAIL = "";
+	private static final String EMAIL = "guest";
+    // Empty password
 	private static final String PASSWORD = "3444c0211ae0b5275bc6a7980f9d7ac4728bb6cbc75982e0026b6fc0507a4ab8";
 	private static final Integer MAX_LOGIN_ATTEMPTS = 3;
 	

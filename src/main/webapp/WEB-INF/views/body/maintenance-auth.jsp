@@ -37,7 +37,7 @@
 
 </div>
 
-<script src="<c:url value="/resources/imageshare/js/pages/maintenance-auth.js"/>" type="text/javascript" charset="utf-8"></script>
+<script src="<c:url value="/resources/app/js/pages/maintenance-auth.js"/>" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#wrap").attr("style", "margin-bottom: -80px");

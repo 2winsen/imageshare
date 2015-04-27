@@ -4,7 +4,7 @@
 
 <div style="text-align: center;">
 	<div style="padding-bottom: 15px;" class="input-append">
-		<input id="ZeroClipboard_swf" type="hidden" value="<c:url value="/resources/zeroclipboard/ZeroClipboard.swf"/>" /> 
+		<input id="ZeroClipboard_swf" type="hidden" value="<c:url value="/resources/vendors/zeroclipboard/ZeroClipboard.swf"/>" />
 		<input style="width: 500px;" readonly class="span2" id="appendedInputButton" type="text" value="${url}"> 
 		<a id="copyToClipboard" href="#" class="btn" data-clipboard-text="${url}" data-original-title="<spring:message code="app.image.copied.to.clipboard" />"><spring:message code="app.image.copy" /></a>
 	</div>
@@ -29,5 +29,5 @@
 
 </div>
 
-<script src="<c:url value="/resources/zeroclipboard/ZeroClipboard.min.js"/>" type="text/javascript" charset="utf-8"></script>
-<script src="<c:url value="/resources/imageshare/js/pages/image.js"/>" type="text/javascript" charset="utf-8"></script>
+<script src="<c:url value="/resources/vendors/zeroclipboard/ZeroClipboard.min.js"/>" type="text/javascript" charset="utf-8"></script>
+<script src="<c:url value="/resources/app/js/pages/image.js"/>" type="text/javascript" charset="utf-8"></script>

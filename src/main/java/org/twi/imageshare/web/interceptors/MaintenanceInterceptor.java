@@ -17,6 +17,7 @@ public class MaintenanceInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		String uri = request.getRequestURI();
+        // Ignore static resources
 		if (!uri.contains(RESOURCES_URL)) {
 			imageService.removeOldImagesIfNecessary();
 		}

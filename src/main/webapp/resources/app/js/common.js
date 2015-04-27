@@ -31,10 +31,6 @@ var CommonModule = (function() {
 			$("#messagesContainer").append(messageHtml);
 		},
 		
-		salt : function() {
-		    return "8ngYIQWeqm";
-		},
-		
 		recaptchaRefresh : function() {
 			if (typeof(Recaptcha) != 'undefined') {
 				$('#recaptcha_challenge_field').val('');

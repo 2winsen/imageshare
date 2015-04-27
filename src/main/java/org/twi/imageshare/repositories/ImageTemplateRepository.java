@@ -87,7 +87,7 @@ public class ImageTemplateRepository {
 	}
 
 	private boolean isMaxAllowedSpaceInUse() {
-		int size = (Integer) getDBStats().get("dataSize");
+        int size = ((Double)getDBStats().get("dataSize")).intValue();
 		return size >= MAX_ALLOWED_DB_SIZE;
 	}
 

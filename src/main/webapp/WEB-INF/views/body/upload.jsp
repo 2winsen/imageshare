@@ -4,7 +4,7 @@
 
 <div class="fileupload fileupload-new" data-provides="fileupload" style="text-align: center;">
 	<div class="fileupload-new thumbnail" style="width: 300px; height: 225px;">
-		<img src="<c:url value="/resources/imageshare/img/no_preview.png"/>" />
+		<img src="<c:url value="/resources/app/assets/img/no_preview.png"/>" />
 	</div>
 	<div class="fileupload-preview fileupload-exists thumbnail"
 		style="max-width: 300px; max-height: 300px; line-height: 20px;"></div>
@@ -55,10 +55,10 @@
 	</div>
 </div>
 
-<script src="<c:url value="/resources/imageshare/js/pages/upload.js"/>" type="text/javascript" charset="utf-8"></script>
-<script src="<c:url value="/resources/bootstrap-fileupload/bootstrap-fileupload.min.js"/>" type="text/javascript" charset="utf-8"></script>
+<script src="<c:url value="/resources/app/js/pages/upload.js"/>" type="text/javascript" charset="utf-8"></script>
+<script src="<c:url value="/resources/vendors/bootstrap-fileupload/bootstrap-fileupload.min.js"/>" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("#wrap").attr("style", "margin-bottom: -80px");
+		$("#wrap").attr("style", "margin-bottom: -60px");
 	});
 </script>	

@@ -5,7 +5,6 @@
 	};
 </script>
 
-
 <script type="text/javascript"
 	src="http://api.recaptcha.net/challenge?k=6LfWX-QSAAAAALqL0OXbCI5OEnPDRjZEsCZaBo5H"></script>
 <noscript>

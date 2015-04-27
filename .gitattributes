@@ -1,0 +1,18 @@
+# SRC
+*.less -text
+*.js -text
+*.json -text
+*.html -text
+*.bat -text
+*.properties -text
+*.txt -text
+
+# SHELL SCRIPTS
+*.sh eol=lf
+gradlew eol=lf
+
+# IMAGES
+*.jpg binary
+*.png binary
+*.gif binary
+*.ico binary

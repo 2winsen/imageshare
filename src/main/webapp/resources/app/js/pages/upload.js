@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	$("#share1").prop('disabled', true);
+	$('#uploadForm')[0].reset();
 	
 	$("#imageFile").change(function() {
 		enableShareButton();
