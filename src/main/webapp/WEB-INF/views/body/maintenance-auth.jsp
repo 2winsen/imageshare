@@ -11,7 +11,7 @@
 		<table>
 			<tr>
 				<td style="padding-right: 50px;">Email:</td>
-				<td style="width: 500px;"><input id="email" name="email" type="text" placeholder="Email"></td>
+				<td style="width: 500px;"><input id="email" name="email" type="text" placeholder="Email" value="guest@imageshare.com"></td>
 			</tr>
 			<tr>
 				<td>Password:</td>
