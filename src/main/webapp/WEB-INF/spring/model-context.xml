@@ -13,22 +13,13 @@
 	<bean id="mongoImageTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
 		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
 	</bean>
-	
-	<!-- APPFOG -->
-<!-- 	<mongo:db-factory      -->
-<!-- 		id="mongoDbFactory" -->
-<!--     	dbname="pwdtest" -->
-<!--     	host="127.0.0.1" -->
-<!--     	port="1234" -->
-<!--     	username="test_user" -->
-<!--     	password="test_pass" /> -->
     	  
  	<!-- DEV -->
 	<mongo:db-factory     
 		id="mongoDbFactory"
-    	dbname="pwdtest"
-    	host="127.0.0.1"
-    	port="27017"
+    	dbname="#{systemEnvironment['DB_NAME']}"
+    	host="#{systemEnvironment['DB_HOST']}"
+    	port="#{systemEnvironment['DB_PORT']}"
     	username=""
     	password="" />
 

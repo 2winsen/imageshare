@@ -1,0 +1,21 @@
+version: '2.4'
+
+services:
+  java:
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    environment:
+      DB_HOST: "mongo"
+      DB_PORT: "27017"
+      DB_NAME: "pwdtest"
+      MAINTENANCE_EMAIL: "admin@imageshare.com"
+      MAINTENANCE_PASSWORD: "admin"
+    volumes:
+      - .:/opt/app
+  mongo:
+    image: mongo:3.6.21
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ""
+      MONGO_INITDB_ROOT_PASSWORD: ""

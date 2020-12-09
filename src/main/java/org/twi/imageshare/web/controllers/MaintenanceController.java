@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import net.tanesha.recaptcha.ReCaptcha;
 import net.tanesha.recaptcha.ReCaptchaResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -23,10 +25,10 @@ import org.twi.imageshare.web.controllers.params.JsonResponse;
 @Controller
 @RequestMapping("/maintenance")
 public class MaintenanceController {
-	
-	private static final String EMAIL = "guest@imageshare.com";
-    // TODO: Empty password!
-	private static final String PASSWORD = "3444c0211ae0b5275bc6a7980f9d7ac4728bb6cbc75982e0026b6fc0507a4ab8";
+	public static final Logger log = LoggerFactory.getLogger(MaintenanceController.class);
+
+	private static final String EMAIL = System.getenv("MAINTENANCE_EMAIL");
+	private static final String PASSWORD = System.getenv("MAINTENANCE_PASSWORD");
 	private static final Integer MAX_LOGIN_ATTEMPTS = 3;
 	
 	private static final String SESSION_ATTR_IS_AUTHENTICATED = "isAuthenticated";
