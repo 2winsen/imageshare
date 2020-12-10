@@ -1,13 +1,15 @@
 $(document).ready(function() {
-	var clip = new ZeroClipboard($("#copyToClipboard"), {
-		moviePath : $("#ZeroClipboard_swf").val()
-	});
+    function copy() {
+        var $copiedNotification = $("#copied-notification");
+        var urlInput = $("#url-input").get(0);
+        urlInput.select();
+        document.execCommand("copy");
+        $copiedNotification.addClass("copied");
+        var animationInterval = setInterval(function(){
+          $copiedNotification.removeClass("copied");
+          clearInterval(animationInterval);
+        }, 1000);
+    }
 
-	clip.on('mousedown', function(client) {
-		$('#copyToClipboard').tooltip('show');
-	});
-	
-	clip.on('mouseout', function(client) {
-		$('#copyToClipboard').tooltip('destroy');
-	});
+    $("#copy-to-clipboard-btn").click(copy);
 });

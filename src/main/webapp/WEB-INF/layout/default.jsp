@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title><spring:message code="app.name" /><spring:message code="app.slogan" /></title>
+	<title><spring:message code="app.name" /> <spring:message code="app.slogan" /></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="<c:url value="/resources/vendors/bootstrap/css/bootstrap.min.css" />" rel="stylesheet" media="screen">
 	<link href="<c:url value="/resources/app/assets/style/style.css" />" rel="stylesheet">

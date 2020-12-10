@@ -1,7 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div style="text-align: center;" class="maintenance">
-	<h3>
+	<h3 class="section-header">
 		<spring:message code="app.status.title" />
 	</h3>
 	
