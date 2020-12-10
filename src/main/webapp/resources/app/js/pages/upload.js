@@ -16,8 +16,6 @@ $(document).ready(function() {
 	$('#share2').click(function() {
 		// Copies comment value from popup
 		$('#comment').val($('#commentTemp').val());
-		$('#captcha_response').val($('#recaptcha_response_field').val());
-		$('#captcha_challenge').val($('#recaptcha_challenge_field').val());
 		$('#uploadForm').submit();
 	});
 
@@ -25,17 +23,12 @@ $(document).ready(function() {
 		clearForm : false,
 		success : function(response) {
 			if (response != null) {
-				CommonModule.recaptchaRefresh();
-				if (response.captchaError != null) {
-					CommonModule.showCaptchaErrorMessage(response.captchaError);
-				} else {
-					if (response.errors != null) {
-						CommonModule.showErrorMessages(response.errors);
-						$('#commentModal').modal('hide');
-					} else {
-						window.location = response.response;
-					}					
-				}
+                if (response.errors != null) {
+                    CommonModule.showErrorMessages(response.errors);
+                    $('#commentModal').modal('hide');
+                } else {
+                    window.location = response.response;
+                }
 			}
 		},
 		error: CommonModule.generalErrorHandler

@@ -1,7 +1,7 @@
 package org.twi.imageshare.repositories;
 
-import java.util.List;
-
+import com.mongodb.CommandResult;
+import com.mongodb.DB;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -10,8 +10,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 import org.twi.imageshare.entities.Image;
 
-import com.mongodb.CommandResult;
-import com.mongodb.DB;
+import java.util.List;
 
 @Repository
 public class ImageTemplateRepository {
@@ -87,7 +86,7 @@ public class ImageTemplateRepository {
 	}
 
 	private boolean isMaxAllowedSpaceInUse() {
-        int size = (Integer) getDBStats().get("dataSize");
+        int size = ((Double) getDBStats().get("dataSize")).intValue();
 		return size >= MAX_ALLOWED_DB_SIZE;
 	}
 

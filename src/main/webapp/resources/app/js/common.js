@@ -17,25 +17,11 @@ var CommonModule = (function() {
 			$("#messagesContainer").append(messageHtml);
 		},
 		
-		showCaptchaErrorMessage : function(text) {
-			var messageHtml = "<div class='alert alert-error'>"
-				+ "<strong>Warning!</strong>&nbsp;<span>"
-				+ text + "</span>" + "</div>";
-			$("#captchaErrorContainer").html(messageHtml);
-		},
-		
 		showSuccessMessage : function(text) {
 			var messageHtml = "<div class='alert alert-info'>"
 				+ "<strong>Success.</strong>&nbsp;<span>"
 				+ text + "</span>" + "</div>";
 			$("#messagesContainer").append(messageHtml);
-		},
-		
-		recaptchaRefresh : function() {
-			if (typeof(Recaptcha) != 'undefined') {
-				$('#recaptcha_challenge_field').val('');
-				Recaptcha.reload();
-			}
 		}
 	};
 	

@@ -17,12 +17,6 @@
 				<td>Password:</td>
 				<td><input id="password" name="password" type="password" placeholder="Password"></td>
 			</tr>
-			<tr id="captchaTr" style="display: none;" showCaptcha="${showCaptcha}">
-				<td colspan="2" style="padding-top: 20px;">
-					<div id="captchaErrorContainer"></div>
-					<%@ include file="/WEB-INF/views/body/recaptcha.jsp" %>
-				</td>
-			</tr>
 			<tr>
 				<td colspan="2" style="padding-top: 20px;">
 					<button type="submit" class="btn btn-primary" style="width: 100px;">Auth</button>
@@ -38,8 +32,3 @@
 </div>
 
 <script src="<c:url value="/resources/app/js/pages/maintenance-auth.js"/>" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("#wrap").attr("style", "margin-bottom: -80px");
-	});
-</script>

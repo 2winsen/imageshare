@@ -6,9 +6,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import net.tanesha.recaptcha.ReCaptcha;
-import net.tanesha.recaptcha.ReCaptchaResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,48 +38,21 @@ public class UploadController {
 
 	@Autowired
 	private ApplicationContext context;
-	
-	@Autowired
-	private ReCaptcha recaptcha;
 
 	@Resource(name = ImageService.IMAGE_SERVICE_BEAN)
 	private ImageService imageService;
 
-	/**
-	 * Rendering index page
-	 * 
-	 * @param model
-	 * @return
-	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView indexView() {
 		return new ModelAndView("uploadPage", "image", new Image());
 	}
 
-	/**
-	 * AJAX Called once user is submitting upload form
-	 * 
-	 * @param model
-	 * @param file
-	 *            - Uploaded file
-	 * @param comment
-	 *            - Comment for uploaded file
-	 * @return
-	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody
-	JsonResponse uploadAction(@Valid @ModelAttribute(value = "image") Image image, 
-			@RequestParam(value = "captcha_challenge", required=true) String challenge,
-			@RequestParam(value = "captcha_response", required=true) String response, 
+	JsonResponse uploadAction(@Valid @ModelAttribute(value = "image") Image image,
 	        BindingResult result,
 			HttpServletRequest paramHttpServletRequest) {
 		JsonResponse jsonResponse = new JsonResponse();
-	    String remoteAddr = paramHttpServletRequest.getRemoteAddr();
-	    ReCaptchaResponse reCaptchaResponse = recaptcha.checkAnswer(remoteAddr, challenge, response);
-	    if (!reCaptchaResponse.isValid()) {
-	    	jsonResponse.setCaptchaError(context.getMessage("error.bad.captcha", null, Locale.getDefault()));
-	    	return jsonResponse;
-	    }
 		
 		prepareImage(image);
 		(new ImageValidator()).validate(image, result);

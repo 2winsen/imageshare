@@ -5,9 +5,6 @@ import java.util.Locale;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import net.tanesha.recaptcha.ReCaptcha;
-import net.tanesha.recaptcha.ReCaptchaResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +26,7 @@ public class MaintenanceController {
 
 	private static final String EMAIL = System.getenv("MAINTENANCE_EMAIL");
 	private static final String PASSWORD = System.getenv("MAINTENANCE_PASSWORD");
-	private static final Integer MAX_LOGIN_ATTEMPTS = 3;
-	
+
 	private static final String SESSION_ATTR_IS_AUTHENTICATED = "isAuthenticated";
 	private static final String SESSION_ATTR_LOGIN_ATTEMPT = "loginAttempt";
 	
@@ -39,9 +35,6 @@ public class MaintenanceController {
 
 	@Resource(name = ImageService.IMAGE_SERVICE_BEAN)
 	private ImageService imageService;
-	
-	@Autowired
-	private ReCaptcha recaptcha;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView indexView(HttpServletRequest paramHttpServletRequest, 
@@ -58,9 +51,6 @@ public class MaintenanceController {
 				}
 			}
 		} else {
-			if (isMaxAttempts(paramHttpServletRequest)) {
-				modelAndView.addObject("showCaptcha", "showCaptcha");
-			}
 			modelAndView.setViewName("maintenanceAuthPage");
 		}
 		return modelAndView;
@@ -69,20 +59,8 @@ public class MaintenanceController {
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody JsonResponse maintenanceAuth(@RequestParam(value = "email", required=true) String email,
 			@RequestParam(value = "password", required=true) String password,
-			@RequestParam(value = "recaptcha_challenge_field", required=false) String challenge,
-			@RequestParam(value = "recaptcha_response_field", required=false) String response,
 			HttpServletRequest paramHttpServletRequest) {
 		JsonResponse jsonResponse = new JsonResponse();
-		
-		if (isMaxAttempts(paramHttpServletRequest)) {
-			String remoteAddr = paramHttpServletRequest.getRemoteAddr();
-			ReCaptchaResponse reCaptchaResponse = recaptcha.checkAnswer(remoteAddr, challenge, response);
-			if (!reCaptchaResponse.isValid()) {
-				jsonResponse.setCaptchaError(context.getMessage("error.bad.captcha", null, Locale.getDefault()));
-				return jsonResponse;
-			}
-		}
-		
 		if (credentialsValid(email, password)) {
 			jsonResponse.setResponse(paramHttpServletRequest.getRequestURL());
 			paramHttpServletRequest.getSession().setAttribute(SESSION_ATTR_IS_AUTHENTICATED, true);			
@@ -92,17 +70,15 @@ public class MaintenanceController {
 				attempts = 0;
 			} 
 			paramHttpServletRequest.getSession().setAttribute(SESSION_ATTR_LOGIN_ATTEMPT, ++attempts);
-			if (attempts >= MAX_LOGIN_ATTEMPTS) {
-				jsonResponse.setResponse("showCaptcha");	
-			}			
 	    	jsonResponse.appendError(context.getMessage("error.bad.credentials", null, Locale.getDefault()));
 		}
 		return jsonResponse;
 	}
-	
-	private boolean isMaxAttempts(HttpServletRequest paramHttpServletRequest) {
-		Integer attempts = (Integer)paramHttpServletRequest.getSession().getAttribute(SESSION_ATTR_LOGIN_ATTEMPT);
-		return attempts != null && attempts >= MAX_LOGIN_ATTEMPTS;
+
+	@RequestMapping(value = "/logout", method = RequestMethod.POST)
+	public String maintenanceLogout(HttpServletRequest paramHttpServletRequest) {
+		paramHttpServletRequest.getSession().invalidate();
+		return "redirect:/maintenance";
 	}
 	
 	private boolean credentialsValid(String email, String password) {

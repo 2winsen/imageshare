@@ -12,7 +12,6 @@ Project, where user can upload image and instantly share url with this image
   * spring data
 * client:
   * jquery
-  * recaptcha
 
 ## Preconditions
 * java7
