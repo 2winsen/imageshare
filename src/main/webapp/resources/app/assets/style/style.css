@@ -86,7 +86,7 @@ html,body {
 
 .image #copied-notification.copied {
     opacity: 1;
-    transform: translateY(-2em);
+    transform: translateY(-1.7em);
 }
 
 .image .well {
@@ -94,4 +94,61 @@ html,body {
     margin: 5px 5px 5px 5px;
     text-align: left;
     padding: 10px;
+}
+
+.upload {
+    text-align: center;
+}
+
+.upload #uploadForm {
+    background-color: #E8E8E8;
+    outline: 2px dashed #08c;
+    outline-offset: -8px;
+    font-size: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 220px;
+    padding: 50px 0;
+}
+
+.upload #uploadForm.is-dragover {
+    background-color: white;
+}
+
+.upload #imageFile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.upload #uploadForm label {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    font-size: .9em;
+}
+
+.upload #uploadForm label strong:hover {
+    color: #08c;
+}
+
+.upload #uploadForm .preview img {
+    max-width: 360px;
+    padding-bottom: 25px;
+}
+
+.upload .modal-body {
+    padding-bottom: 0px;
+    display: flex;
+}
+
+.upload .modal-body textarea {
+    flex: 1;
+    height: 112px;
 }

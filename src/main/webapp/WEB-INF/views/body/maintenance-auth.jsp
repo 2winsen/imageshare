@@ -7,7 +7,7 @@
 		<spring:message code="app.title.maintenance" />
 	</h3>
 	
-	 <form id="maintenanceAuthForm"action="#" method="post">
+	 <form id="maintenanceAuthForm" method="post" action="/maintenance">
 		<table>
 			<tr>
 				<td class="form-label">Email:</td>
@@ -22,7 +22,6 @@
 					<button type="submit" class="btn btn-primary">Auth</button>
 				</td>
 			</tr>
-			
 		</table>	 
 	 </form>
 

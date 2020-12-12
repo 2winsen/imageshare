@@ -8,11 +8,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="<c:url value="/resources/vendors/bootstrap/css/bootstrap.min.css" />" rel="stylesheet" media="screen">
 	<link href="<c:url value="/resources/app/assets/style/style.css" />" rel="stylesheet">
-	<link href="<c:url value="/resources/vendors/bootstrap-fileupload/bootstrap-fileupload.min.css" />" rel="stylesheet">
 
 	<script src="<c:url value="/resources/vendors/jquery/jquery-1.9.1.min.js"/>" type="text/javascript" charset="utf-8"></script>
 	<script src="<c:url value="/resources/vendors/bootstrap/js/bootstrap.min.js"/>" type="text/javascript" charset="utf-8"></script>
-	<script src="<c:url value="/resources/vendors/jquery/jquery.form.js" />" type="text/javascript" charset="utf-8"></script>
 
 	<script src="<c:url value="/resources/app/js/common.js"/>" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
