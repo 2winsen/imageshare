@@ -1,26 +1,34 @@
-# imageshare
+# Imageshare
+Project, where user can upload image and instantly share it
 
-## Summary
-Project, where user can upload image and instantly share url with this image
+## Demo
+![](https://github.com/2winsen/imageshare/blob/master/demo.gif)
+
+## Requirements
+Java 7
+Mongo DB 3.6
 
 ## Technology Stack
 * server:
-  * java7
-  * spring mvc
-  * spring web
-  * apache tiles
-  * spring data
+  * Java 7
+  * Spring MVC
+  * Spring WEB
+  * Spring Data
+  * Apache Tiles
 * client:
-  * jquery
+  * JQuery 1.9
+  * Bootstrap 2.3.0
 
-## Preconditions
-* java7
-* maven
-* MongoDB
+## Getting started
 
-## Installation
-* mvn clean install
-* mvn jetty:run
-
-## Author
-2winsen
+### Docker
+To run app in docker make sure to have docker-compose and then run the following command
+```
+docker-compose up
+```
+To cleanup run
+```
+docker-compose down --rmi=local
+```
+Open [http://localhost:8080](http://localhost:8080) to view it in the browser.  
+Project directory is a bind mount to docker container for ease of development.

@@ -10,7 +10,7 @@
 	<link href="<c:url value="/resources/app/assets/style/style.css" />" rel="stylesheet">
 
 	<script src="<c:url value="/resources/vendors/jquery/jquery-1.9.1.min.js"/>" type="text/javascript" charset="utf-8"></script>
-	<script src="<c:url value="/resources/vendors/bootstrap/js/bootstrap.min.js"/>" type="text/javascript" charset="utf-8"></script>
+	<script src="<c:url value="/resources/vendors/bootstrap/js/bootstrap-2.3.0.min.js"/>" type="text/javascript" charset="utf-8"></script>
 
 	<script src="<c:url value="/resources/app/js/common.js"/>" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
